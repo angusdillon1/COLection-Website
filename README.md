@@ -37,7 +37,7 @@ colection-site/
 - [ ] Video guides: edit `js/tutorials-data.js` (see the notes at the top of it); video files go in `videos/`.
 - [ ] Add a way to contact you (for example a "Report a problem" link in the footer).
 - [ ] Check you are allowed to name any college or show its logo. The screenshots use a made-up "Example College" with made-up names.
-- [ ] Replace the screenshots with your own if you like. app-count, app-export and app-rounds show the new Qt program (made on Linux, so fonts differ slightly from Windows); app-ballot, app-phone and app-templates are still from the older look. Keep the file names, or edit the `<img>` tags.
+- [ ] Replace the screenshots with your own if you like. All of them (app-*.png) show the current program, made on Linux, so fonts differ slightly from Windows. Keep the file names, or edit the `<img>` tags.
 - [ ] Check the claims in "What to know before you use it" still match the program.
 - [ ] When you release a new version, change the version number (search `0.2.3` (the current number) in every .html file) and add an entry to `changelog.html`.
 

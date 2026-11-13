@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pricing - COLection</title>
-  <meta name="description" content="COLection is free for up to 50 voters. For bigger elections, pick the size and length you need and get your licence by email straight after paying.">
+  <meta name="description" content="COLection is free for up to 50 voters. For bigger elections, pick the plan, the size and the length you need and get your licence by email straight after paying.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,11 +22,9 @@
       <span>COLection</span>
     </a>
     <nav aria-label="Main">
-      <a href="index.html">Overview</a>
       <a href="how-it-works.html">How it works</a>
-      <a href="counting.html">How counting works</a>
-      <a href="help.html">Help</a>
       <a href="pricing.html" aria-current="page">Pricing</a>
+      <a href="help.html">Help</a>
       <a class="pill" href="index.html#download">Download</a>
     </nav>
   </header>
@@ -35,7 +33,7 @@
     <section class="page-hero" aria-labelledby="page-title">
       <div class="wrap">
         <h1 id="page-title">Pricing.</h1>
-        <p class="sub">Free for up to 50 voters. For bigger groups, choose a size and a length. You pay once and we email you the licence.</p>
+        <p class="sub">Free for up to 50 voters. For bigger groups, pay only for what you use: choose a plan, a size and a length. You pay once and we email you the licence.</p>
       </div>
     </section>
 
@@ -44,19 +42,20 @@
         <form id="buy" class="calc" novalidate>
           <h2 id="calc-title" class="calc-title">Work out your price</h2>
 
+          <fieldset class="field plans">
+            <legend>What do you need it to do?</legend>
+            <label class="choice plan"><input type="radio" name="plan" value="count"><span><strong>Count</strong><small>Count votes you collected on paper or in a form. Import, check, count, and every export.</small><em data-plan-price></em></span></label>
+            <label class="choice plan"><input type="radio" name="plan" value="vote"><span><strong>Vote</strong><small>Count, and run the vote yourself: candidates and profiles, voting stations, phones, the voting desk, paper ballots, emails.</small><em data-plan-price></em></span></label>
+            <label class="choice plan"><input type="radio" name="plan" value="complete" checked><span><strong>Complete</strong><small>Vote, and online voting: a personal link for every voter, by email.</small><em data-plan-price></em></span></label>
+          </fieldset>
+
           <div class="field">
             <label for="voters">How many people can vote?</label>
-            <select id="voters" name="voters" aria-describedby="price-note">
-              <option value="50">Up to 50: free</option>
-              <option value="100">Up to 100</option>
-              <option value="250">Up to 250</option>
-              <option value="500" selected>Up to 500</option>
-              <option value="1000">Up to 1,000</option>
-              <option value="2500">Up to 2,500</option>
-              <option value="5000">Up to 5,000</option>
-              <option value="5001">More than 5,000: ask for a quote</option>
-            </select>
-            <p class="fine">Choose the size that covers everyone on your roll. A licence covers every election you run, up to that many voters in each.</p>
+            <p class="size-shown"><strong id="voters-shown">Up to 250 voters</strong></p>
+            <input type="range" id="voters" name="voters" min="0" max="50" value="20" aria-describedby="price-note">
+            <div class="size-ends" aria-hidden="true"><span>50 (free)</span><span>5,000</span></div>
+            <div class="size-type"><label for="voters-number">Or type a number</label><input id="voters-number" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="250"></div>
+            <p class="fine">Drag to the size that covers everyone on your roll. A licence covers every election you run, up to that many voters in each.</p>
           </div>
 
           <fieldset class="field terms">
@@ -93,6 +92,7 @@
         <aside class="plain">
           <h2 class="aside-title">What you get</h2>
           <ul class="ticks">
+            <li>Everything in the plan you choose, for groups up to the size you choose.</li>
             <li>No limit on how many elections you run while the licence is valid.</li>
             <li>We email you the licence. Paste it into Settings &gt; Licence. It works without internet.</li>
             <li>Reports lose the "made with the free version" line.</li>
@@ -101,7 +101,7 @@
           <h2 class="aside-title">If a licence ends</h2>
           <p>Nothing is locked or lost. Your elections, results and exports stay open. The program simply returns to the free version (up to 50 voters).</p>
           <h2 class="aside-title">Free</h2>
-          <p>Up to 50 voters in an election. Every feature, no time limit. Download it and try it on a real event first.</p>
+          <p>Up to 50 voters in an election. Every feature of the Complete plan, no time limit. Download it and try it on a real event first.</p>
           <p><a class="btn" href="index.html#download">Download COLection</a></p>
         </aside>
       </div>
@@ -109,10 +109,12 @@
 
     <section class="examples" aria-labelledby="examples-title">
       <div class="wrap">
-        <h2 id="examples-title">All the sizes.</h2>
+        <h2 id="examples-title">Common sizes.</h2>
+        <p class="table-pick"><label for="examples-term">Prices for</label>
+          <select id="examples-term"><option value="pass">a 30-day pass</option><option value="1" selected>1 year</option><option value="2">2 years</option><option value="3">3 years</option></select></p>
         <div class="table-scroll">
           <table>
-            <thead><tr><th scope="col">Voters</th><th scope="col">30-day pass</th><th scope="col">1 year</th><th scope="col">2 years</th><th scope="col">3 years</th></tr></thead>
+            <thead><tr><th scope="col">Voters</th><th scope="col">Count</th><th scope="col">Vote</th><th scope="col">Complete</th></tr></thead>
             <tbody id="examples"></tbody>
           </table>
         </div>
@@ -123,12 +125,14 @@
     <section class="faq" aria-labelledby="faq-title">
       <div class="wrap">
         <h2 id="faq-title">Questions.</h2>
-        <details><summary>How is the price worked out?</summary><p>By the size of your group: a bigger group pays more in total but less per voter. Longer licences get a discount for each extra year. The price you see here is the price you pay.</p></details>
-        <details><summary>What counts as a voter?</summary><p>Anyone on the roll of an election. A licence for up to 500 voters covers any election with up to 500 people on its roll, as many times as you like while it lasts.</p></details>
+        <details><summary>How is the price worked out?</summary><p>By what you use and how many people vote. The plan sets what the licence covers; a bigger group pays more in total but less per voter; longer licences get a discount for each extra year. The price you see here is the price you pay.</p></details>
+        <details><summary>Which plan do I need?</summary><p><strong>Count</strong> if people have already voted, on paper or in a form such as Google Forms, and you want COLection to check and count the votes and make the report. <strong>Vote</strong> if COLection runs the vote on the day: voting stations, phones with a QR code, the voting desk, printed paper ballots. <strong>Complete</strong> if people also vote from home with a personal link. Every plan includes the official PDF report, the results announcement page and the data reports.</p></details>
+        <details><summary>What if I chose a plan that is too small?</summary><p>Nothing is lost. The program tells you when something is outside your plan, and everything in your plan carries on working. Email us and we will take what you have paid into account towards the bigger plan. Elections of up to 50 voters can always use every feature.</p></details>
+        <details><summary>What counts as a voter?</summary><p>Anyone on the roll of an election (for the Count plan, each ballot counted). A licence for up to 500 voters covers any election with up to 500 people on its roll, as many times as you like while it lasts.</p></details>
         <details><summary>My group is very large, or I do not have a voter list.</summary><p>Over 5,000 voters, <a href="#" id="big-link">ask for a quote</a>. If you have no list at all (a union or a student body with tens of thousands of members), turn on walk-in registration: people are registered at a desk as they arrive, and the licence limit counts the people registered, so you only pay for the people who actually vote.</p></details>
         <details><summary>I need a few more voters than I bought.</summary><p>The program will tell you when an election is over the limit, and you can buy a bigger licence. Email us and we will take what you have paid into account.</p></details>
         <details><summary>Can I use the licence on a different computer?</summary><p>Yes. It is a line of text you paste in on any computer you use for your organisation. It is for your organisation's use, not for sharing with other groups.</p></details>
-        <details><summary>How do I pay?</summary><p>By bank transfer. Choose your size and length above and press the button: your email program opens with the details filled in. We reply with an invoice (purchase orders are fine), and once the payment arrives we email you the licence. You can also <a href="#" id="invoice-link">email us</a> directly with your organisation name, the number of voters and the length you need, and we will send an invoice.</p></details>
+        <details><summary>How do I pay?</summary><p>By bank transfer. Choose your plan, size and length above and press the button: your email program opens with the details filled in. We reply with an invoice (purchase orders are fine), and once the payment arrives we email you the licence. You can also <a href="#" id="invoice-link">email us</a> directly with your organisation name, the plan, the number of voters and the length you need, and we will send an invoice.</p></details>
         <details><summary>Can I get a refund?</summary><p>If it does not work for you, tell us within 14 days and we will refund you in full. A refunded licence stops being accepted by updated versions of the program.</p></details>
         <details><summary>Does the program phone home to check the licence?</summary><p>No. The licence is checked on your computer, with no internet needed. Nothing about your elections or voters ever leaves your computer.</p></details>
       </div>
@@ -149,7 +153,7 @@
         <a href="pricing.html">Pricing</a>
         <a href="terms.html">Terms</a>
       </nav>
-      <p>Counting elections for any group. Version 0.2.3.</p>
+      <p>Election software for any group. Version 0.2.3.</p>
     </div>
   </footer>
   <script src="js/site-config.js"></script>

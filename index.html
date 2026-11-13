@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>COLection - count elections for any group</title>
-  <meta name="description" content="COLection counts preferential and multi-seat elections, runs the vote on phones and voting stations, and shows every round so anyone can check the result.">
+  <title>COLection - election software for clubs and colleges</title>
+  <meta name="description" content="COLection is a program for Windows that runs your whole election: nominations, voting on phones, the count and the results. Free for up to 50 voters.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,92 +22,103 @@
       <span>COLection</span>
     </a>
     <nav aria-label="Main">
-      <a href="index.html" aria-current="page">Overview</a>
       <a href="how-it-works.html">How it works</a>
-      <a href="counting.html">How counting works</a>
-      <a href="help.html">Help</a>
       <a href="pricing.html">Pricing</a>
+      <a href="help.html">Help</a>
       <a class="pill" href="index.html#download">Download</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="home-hero" data-theme="dark" aria-label="COLection">
-      <div class="wrap home-hero-grid">
-        <div class="home-hero-copy">
-          <h1>Count any election.</h1>
-          <p class="lead">COLection runs the vote, counts it, and shows every step, so anyone can check the result.</p>
+
+    <!-- The first screen says what this is: a program, shown running. -->
+    <section class="hero2" aria-label="COLection">
+      <div class="wrap hero2-grid">
+        <div class="hero2-copy">
+          <h1>Election software for clubs, colleges and&nbsp;societies.</h1>
+          <p class="lead">COLection is a program for your computer that runs the whole election &mdash; nominations, voting on phones, the count and the results.</p>
           <p class="actions">
-            <a class="btn light" href="#download">Download for Windows</a>
-            <a class="textlink" href="how-it-works.html">See how it works</a>
+            <a class="btn" href="#download">Download free</a>
+            <a class="textlink alt" href="how-it-works.html">See how it works</a>
           </p>
-          <p class="fine">Free for up to 50 voters. No account needed.</p>
+          <p class="fine">For Windows 10 and 11 &middot; Free for up to 50 voters &middot; No account needed</p>
         </div>
-        <svg class="home-rings" id="home-rings" viewBox="-6 -6 112 112" aria-hidden="true" focusable="false">
-          <g fill="none" stroke-width="8" stroke-linecap="round">
-            <path id="hr-a" d="M80.6 24.3 A40 40 0 1 0 80.6 75.7" stroke="#2c5aa6"/>
-            <path id="hr-b" d="M70.7 32.6 A27 27 0 1 0 70.7 67.4" stroke="#1f9d55"/>
-            <path id="hr-c" d="M60.7 41 A14 14 0 1 0 60.7 59" stroke="#f5ac0b"/>
-          </g>
-          <circle id="hr-dot" cx="50" cy="50" r="4.5" fill="#1f9d55"/>
-        </svg>
+        <figure class="hero2-shot">
+          <div class="win">
+            <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <img src="images/app-count.png" width="1280" height="800" alt="The COLection program on the results step: six positions counted, with the winner of each listed." fetchpriority="high">
+          </div>
+          <figcaption>COLection, a moment after counting a committee election.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="what" id="what" aria-labelledby="what-title">
+    <!-- The whole job, in three plain columns: the three rings on the logo. -->
+    <section class="rings3" aria-labelledby="rings-title">
       <div class="wrap">
-        <h2 id="what-title" class="reveal">What it does.</h2>
-        <div class="what-grid">
-          <article class="what-card reveal">
-            <img src="images/app-ballot.png" width="1180" height="760" alt="A voting station showing four names ranked in order.">
-            <h3>Run the vote</h3>
-            <p>Voters use a phone or a voting station in the room. A person at the desk sends each voter a ballot. It works without internet. Online voting from home is on its way.</p>
+        <h2 id="rings-title">The whole election, in one program.</h2>
+        <div class="rings3-grid">
+          <article class="ring-col navy">
+            <h3>Nominations</h3>
+            <p>Publish a form and candidates put themselves forward. You accept each one with a click, and the ballot builds itself.</p>
           </article>
-          <article class="what-card reveal">
-            <img src="images/app-count.png" width="1280" height="774" alt="The results screen, with the winners listed.">
-            <h3>Count it</h3>
-            <p>Handles ranked votes, several seats and limits on groups. Every round is shown, so the result can be checked.</p>
+          <article class="ring-col green">
+            <h3>Voting</h3>
+            <p>Voters rank the names on their own phone &mdash; in the room or from home. Nothing to install, and it works even without wifi.</p>
+          </article>
+          <article class="ring-col amber">
+            <h3>Counting</h3>
+            <p>One click, counted &mdash; preferential votes, whole committees, ties. You get the winners on screen and a report you can print and sign.</p>
           </article>
         </div>
-        <p class="actions centre"><a class="textlink" href="how-it-works.html">See how it works, step by step</a></p>
       </div>
     </section>
 
-    <section class="who" aria-label="Who it is for">
-      <div class="wrap">
-        <p class="who-line words" id="words">Made for colleges, student unions, clubs, schools and community groups.</p>
-      </div>
-    </section>
-
-    <section class="band" id="price-band" aria-labelledby="price-title">
-      <div class="wrap band-grid reveal">
-        <div>
-          <h2 id="price-title">Free to start.</h2>
-          <p>Free for up to 50 voters, with every feature. For bigger groups, licences start from A$90 a year, and you pay once.</p>
+    <!-- The voter's side: one picture, a few plain sentences. -->
+    <section class="night-out" aria-labelledby="night-title">
+      <div class="wrap night-grid">
+        <figure class="night-phone">
+          <img src="images/app-phone.png" width="340" height="800" alt="A ballot on a phone, with three names ranked in order.">
+          <figcaption>The ballot, on a voter's own phone.</figcaption>
+        </figure>
+        <div class="night-copy">
+          <h2 id="night-title">Election night, without the pile of paper.</h2>
+          <p>One laptop in the room runs the show. Voters scan a code and vote on their phones, or at a laptop set up as a booth.</p>
+          <ul class="plainlist">
+            <li>Someone can't make it? Send them a personal link to vote from home.</li>
+            <li>Ballots carry no names and no times, so every vote is secret.</li>
+            <li>If a computer dies mid-election, no vote is lost.</li>
+          </ul>
         </div>
-        <p class="actions"><a class="btn" href="pricing.html">See pricing</a></p>
       </div>
     </section>
 
-    <section class="band alt" id="custom" aria-labelledby="custom-title">
-      <div class="wrap band-grid reveal">
-        <div>
-          <h2 id="custom-title">Need something specific?</h2>
-          <p>COLection can be adapted to your group's own rules, reports or events. Tell us what you need and we will tell you what is possible.</p>
+    <!-- Trust, and the price, side by side. Short. -->
+    <section class="twin" aria-label="Checking results, and pricing">
+      <div class="wrap twin-grid">
+        <div class="twin-cell">
+          <h2>Results no one can argue with.</h2>
+          <p>COLection shows how every vote moved, round by round, so a close result is never a fight.</p>
+          <p class="actions"><a class="textlink alt" href="counting.html">Watch a count happen</a></p>
         </div>
-        <p class="actions"><a class="btn" href="#" id="custom-link">Talk to us</a></p>
+        <div class="twin-cell">
+          <h2>Free to start.</h2>
+          <p>Everything included for up to 50 voters, for as long as you like. Bigger elections from A$90 a year.</p>
+          <p class="actions"><a class="textlink alt" href="pricing.html">See pricing</a></p>
+        </div>
       </div>
     </section>
 
     <section class="download" id="download" data-theme="dark" aria-labelledby="download-title">
-      <div class="wrap download-simple reveal">
-        <h2 id="download-title">Download COLection.</h2>
+      <div class="wrap download-simple">
+        <h2 id="download-title">Put your next election in it.</h2>
         <p class="sub">Version 0.2.3 for Windows 10 and 11. Free for up to 50 voters.</p>
         <p class="actions">
           <!-- Download links point at the GitHub release v0.2.3. For a new version, upload to a new release (tag v0.2.3 and so on) and change the version in these links. -->
           <a class="btn light" href="https://github.com/angusdillon1/COLection/releases/download/v0.2.3/COLection-Setup-0.2.3.exe">Download the installer</a>
         </p>
         <p class="fine">Windows may warn you the first time, because the program is new. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. <a href="help.html#install">Installation help</a> &middot; <a href="https://github.com/angusdillon1/COLection/releases/download/v0.2.3/COLection-0.2.3.zip">Download as a zip instead</a></p>
+        <p class="fine">Running something unusual? <a href="#" id="custom-link">Tell us what you need</a> and we'll tell you what's possible.</p>
       </div>
     </section>
   </main>
@@ -126,7 +137,7 @@
         <a href="pricing.html">Pricing</a>
         <a href="terms.html">Terms</a>
       </nav>
-      <p>Counting elections for any group. Version 0.2.3.</p>
+      <p>Election software for any group. Version 0.2.3.</p>
     </div>
   </footer>
   <script src="js/site-config.js"></script>
