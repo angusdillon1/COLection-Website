@@ -1,6 +1,6 @@
 /* COLection licence server: a Cloudflare Worker. It does three things and keeps no database:
 
-     POST /api/checkout    the pricing page sends {org, email, voters, term}; this works out the price itself, asks Stripe for a
+     POST /api/checkout    the pricing page sends {org, email, voters, term, plan}; this works out the price itself, asks Stripe for a
                            payment page and returns its address.
      POST /api/webhook     Stripe calls this when a payment succeeds; this signs a licence and emails it to the buyer.
      GET  /api/licence     the "thank you" page asks for the licence by Stripe session id, in case the email is slow.
@@ -54,13 +54,14 @@ function melbourneDate(unixSeconds) {
 async function licenceForSession(session, env) {
   const m = session.metadata || {};
   const voters = Number(m.voters), term = String(m.term);
-  const why = pricing.check(voters, term);
+  const plan = m.plan ? String(m.plan) : null;                 // (a payment made before there were plans has none: it covers everything)
+  const why = pricing.check(voters, term, plan);
   if (why) throw new Error("The session's details are not valid: " + why);
   const issued = melbourneDate(session.created);
   const id = "W-" + (await sha256Hex(session.id)).slice(0, 8).toUpperCase();
   const details = {
     org: cleanOrg(m.org) || "this organisation",
-    plan: voters <= 250 ? "club" : "organisation",
+    plan: plan || (voters <= 250 ? "club" : "organisation"),
     voters,
     issued,
     expires: pricing.expiry(issued, term),
@@ -92,10 +93,11 @@ async function verifyStripeSignature(rawBody, header, secret, nowSeconds, tolera
 function emailFor(session, licence, env) {
   const d = licence.details;
   const term = pricing.termName(session.metadata.term);
+  const planName = pricing.planName(d.plan);
   const text = [
     `Thank you for buying COLection for ${d.org}.`,
     ``,
-    `Your licence (${term}, up to ${d.voters} voters, valid until ${d.expires}):`,
+    `Your licence (${planName ? planName + " plan, " : ""}${term}, up to ${d.voters} voters, valid until ${d.expires}):`,
     ``,
     licence.text,
     ``,
@@ -127,21 +129,22 @@ function makeHandler({ fetch: doFetch = (...a) => fetch(...a), now = () => Math.
     let input;
     try { input = await request.json(); } catch { return reply(400, { error: "That request wasn't understood." }, env); }
     const voters = Number(input.voters), term = String(input.term);
+    const plan = input.plan === undefined || input.plan === null ? pricing.CONFIG.default_plan : String(input.plan);
     const org = cleanOrg(input.org), email = cleanEmail(input.email);
     if (!org) return reply(400, { error: "Please enter the name of your organisation: it goes on the licence." }, env);
     if (!email) return reply(400, { error: "Please enter an email address to send the licence to." }, env);
-    const why = pricing.check(voters, term);
+    const why = pricing.check(voters, term, plan);
     if (why) return reply(400, { error: why }, env);
-    const dollars = pricing.price(voters, term);                                   // (never the price the page showed)
+    const dollars = pricing.price(voters, term, plan);                             // (never the price the page showed)
     const session = await stripe(env, "checkout/sessions", { method: "POST", body: form({
       mode: "payment",
       customer_email: email,
       "line_items[0][quantity]": 1,
       "line_items[0][price_data][currency]": pricing.CONFIG.currency,
       "line_items[0][price_data][unit_amount]": dollars * 100,
-      "line_items[0][price_data][product_data][name]": `COLection licence: ${pricing.termName(term)}, up to ${voters} voters`,
+      "line_items[0][price_data][product_data][name]": `COLection licence: ${pricing.planName(plan)} plan, ${pricing.termName(term)}, up to ${voters} voters`,
       "line_items[0][price_data][product_data][description]": `For ${org}`,
-      "metadata[org]": org, "metadata[voters]": voters, "metadata[term]": term,
+      "metadata[org]": org, "metadata[voters]": voters, "metadata[term]": term, "metadata[plan]": plan,
       "payment_intent_data[description]": `COLection licence for ${org}`,
       "payment_intent_data[metadata][org]": org,
       success_url: `${env.SITE_URL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
@@ -174,7 +177,8 @@ function makeHandler({ fetch: doFetch = (...a) => fetch(...a), now = () => Math.
     const session = await stripe(env, `checkout/sessions/${id}`);
     if (session.payment_status !== "paid") return reply(402, { error: "This payment hasn't gone through yet." }, env);
     const licence = await licenceForSession(session, env);
-    return reply(200, { licence: licence.text, ...licence.details, term: pricing.termName(session.metadata.term) }, env);
+    return reply(200, { licence: licence.text, ...licence.details, term: pricing.termName(session.metadata.term),
+                        plan_name: pricing.planName(licence.details.plan) }, env);
   }
 
   return async function handle(request, env) {
