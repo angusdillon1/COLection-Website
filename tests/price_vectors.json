@@ -2,21 +2,42 @@
  "note": "Shared by tests/test_price.py and the website's tests/pricing.test.js",
  "config": {
   "currency": "aud",
-  "anchor_voters": 100,
-  "anchor_price": 90,
-  "exponent": 0.6,
-  "minimum": 60,
+  "anchor_voters": 250,
+  "anchor_price": 250,
+  "exponent": 0.62,
+  "minimum": 40,
   "round_to": 5,
   "free_voters": 50,
   "max_online_voters": 5000,
-  "tiers": [
-   100,
-   250,
-   500,
-   1000,
-   2500,
-   5000
+  "steps": [
+   [
+    300,
+    10
+   ],
+   [
+    1000,
+    50
+   ],
+   [
+    5000,
+    250
+   ]
   ],
+  "plans": {
+   "count": {
+    "name": "Count",
+    "factor": 0.45
+   },
+   "vote": {
+    "name": "Vote",
+    "factor": 0.75
+   },
+   "complete": {
+    "name": "Complete",
+    "factor": 1.0
+   }
+  },
+  "default_plan": "complete",
   "year_factors": {
    "1": 1.0,
    "2": 0.9,
@@ -31,462 +52,1226 @@
   {
    "voters": 51,
    "term": "1",
-   "price": 90
+   "plan": "count",
+   "price": 45
+  },
+  {
+   "voters": 51,
+   "term": "1",
+   "plan": "vote",
+   "price": 75
+  },
+  {
+   "voters": 51,
+   "term": "1",
+   "plan": "complete",
+   "price": 105
   },
   {
    "voters": 51,
    "term": "2",
-   "price": 160
+   "plan": "count",
+   "price": 85
+  },
+  {
+   "voters": 51,
+   "term": "2",
+   "plan": "vote",
+   "price": 140
+  },
+  {
+   "voters": 51,
+   "term": "2",
+   "plan": "complete",
+   "price": 185
   },
   {
    "voters": 51,
    "term": "3",
-   "price": 215
+   "plan": "count",
+   "price": 110
+  },
+  {
+   "voters": 51,
+   "term": "3",
+   "plan": "vote",
+   "price": 185
+  },
+  {
+   "voters": 51,
+   "term": "3",
+   "plan": "complete",
+   "price": 250
   },
   {
    "voters": 51,
    "term": "pass",
-   "price": 35
+   "plan": "count",
+   "price": 20
+  },
+  {
+   "voters": 51,
+   "term": "pass",
+   "plan": "vote",
+   "price": 30
+  },
+  {
+   "voters": 51,
+   "term": "pass",
+   "plan": "complete",
+   "price": 40
   },
   {
    "voters": 60,
    "term": "1",
-   "price": 90
+   "plan": "count",
+   "price": 45
+  },
+  {
+   "voters": 60,
+   "term": "1",
+   "plan": "vote",
+   "price": 75
+  },
+  {
+   "voters": 60,
+   "term": "1",
+   "plan": "complete",
+   "price": 105
   },
   {
    "voters": 60,
    "term": "2",
-   "price": 160
+   "plan": "count",
+   "price": 85
+  },
+  {
+   "voters": 60,
+   "term": "2",
+   "plan": "vote",
+   "price": 140
+  },
+  {
+   "voters": 60,
+   "term": "2",
+   "plan": "complete",
+   "price": 185
   },
   {
    "voters": 60,
    "term": "3",
-   "price": 215
+   "plan": "count",
+   "price": 110
   },
   {
    "voters": 60,
-   "term": "pass",
-   "price": 35
-  },
-  {
-   "voters": 75,
-   "term": "1",
-   "price": 90
-  },
-  {
-   "voters": 75,
-   "term": "2",
-   "price": 160
-  },
-  {
-   "voters": 75,
    "term": "3",
-   "price": 215
+   "plan": "vote",
+   "price": 185
   },
   {
-   "voters": 75,
-   "term": "pass",
-   "price": 35
-  },
-  {
-   "voters": 99,
-   "term": "1",
-   "price": 90
-  },
-  {
-   "voters": 99,
-   "term": "2",
-   "price": 160
-  },
-  {
-   "voters": 99,
+   "voters": 60,
    "term": "3",
-   "price": 215
-  },
-  {
-   "voters": 99,
-   "term": "pass",
-   "price": 35
-  },
-  {
-   "voters": 100,
-   "term": "1",
-   "price": 90
-  },
-  {
-   "voters": 100,
-   "term": "2",
-   "price": 160
-  },
-  {
-   "voters": 100,
-   "term": "3",
-   "price": 215
-  },
-  {
-   "voters": 100,
-   "term": "pass",
-   "price": 35
-  },
-  {
-   "voters": 101,
-   "term": "1",
-   "price": 155
-  },
-  {
-   "voters": 101,
-   "term": "2",
-   "price": 280
-  },
-  {
-   "voters": 101,
-   "term": "3",
-   "price": 375
-  },
-  {
-   "voters": 101,
-   "term": "pass",
-   "price": 60
-  },
-  {
-   "voters": 120,
-   "term": "1",
-   "price": 155
-  },
-  {
-   "voters": 120,
-   "term": "2",
-   "price": 280
-  },
-  {
-   "voters": 120,
-   "term": "3",
-   "price": 375
-  },
-  {
-   "voters": 120,
-   "term": "pass",
-   "price": 60
-  },
-  {
-   "voters": 150,
-   "term": "1",
-   "price": 155
-  },
-  {
-   "voters": 150,
-   "term": "2",
-   "price": 280
-  },
-  {
-   "voters": 150,
-   "term": "3",
-   "price": 375
-  },
-  {
-   "voters": 150,
-   "term": "pass",
-   "price": 60
-  },
-  {
-   "voters": 200,
-   "term": "1",
-   "price": 155
-  },
-  {
-   "voters": 200,
-   "term": "2",
-   "price": 280
-  },
-  {
-   "voters": 200,
-   "term": "3",
-   "price": 375
-  },
-  {
-   "voters": 200,
-   "term": "pass",
-   "price": 60
-  },
-  {
-   "voters": 250,
-   "term": "1",
-   "price": 155
-  },
-  {
-   "voters": 250,
-   "term": "2",
-   "price": 280
-  },
-  {
-   "voters": 250,
-   "term": "3",
-   "price": 375
-  },
-  {
-   "voters": 250,
-   "term": "pass",
-   "price": 60
-  },
-  {
-   "voters": 251,
-   "term": "1",
-   "price": 235
-  },
-  {
-   "voters": 251,
-   "term": "2",
-   "price": 425
-  },
-  {
-   "voters": 251,
-   "term": "3",
-   "price": 565
-  },
-  {
-   "voters": 251,
-   "term": "pass",
-   "price": 95
-  },
-  {
-   "voters": 300,
-   "term": "1",
-   "price": 235
-  },
-  {
-   "voters": 300,
-   "term": "2",
-   "price": 425
-  },
-  {
-   "voters": 300,
-   "term": "3",
-   "price": 565
-  },
-  {
-   "voters": 300,
-   "term": "pass",
-   "price": 95
-  },
-  {
-   "voters": 400,
-   "term": "1",
-   "price": 235
-  },
-  {
-   "voters": 400,
-   "term": "2",
-   "price": 425
-  },
-  {
-   "voters": 400,
-   "term": "3",
-   "price": 565
-  },
-  {
-   "voters": 400,
-   "term": "pass",
-   "price": 95
-  },
-  {
-   "voters": 500,
-   "term": "1",
-   "price": 235
-  },
-  {
-   "voters": 500,
-   "term": "2",
-   "price": 425
-  },
-  {
-   "voters": 500,
-   "term": "3",
-   "price": 565
-  },
-  {
-   "voters": 500,
-   "term": "pass",
-   "price": 95
-  },
-  {
-   "voters": 501,
-   "term": "1",
-   "price": 360
-  },
-  {
-   "voters": 501,
-   "term": "2",
-   "price": 645
-  },
-  {
-   "voters": 501,
-   "term": "3",
-   "price": 860
-  },
-  {
-   "voters": 501,
-   "term": "pass",
-   "price": 145
-  },
-  {
-   "voters": 750,
-   "term": "1",
-   "price": 360
-  },
-  {
-   "voters": 750,
-   "term": "2",
-   "price": 645
-  },
-  {
-   "voters": 750,
-   "term": "3",
-   "price": 860
-  },
-  {
-   "voters": 750,
-   "term": "pass",
-   "price": 145
-  },
-  {
-   "voters": 1000,
-   "term": "1",
-   "price": 360
-  },
-  {
-   "voters": 1000,
-   "term": "2",
-   "price": 645
-  },
-  {
-   "voters": 1000,
-   "term": "3",
-   "price": 860
-  },
-  {
-   "voters": 1000,
-   "term": "pass",
-   "price": 145
-  },
-  {
-   "voters": 1001,
-   "term": "1",
-   "price": 620
-  },
-  {
-   "voters": 1001,
-   "term": "2",
-   "price": 1120
-  },
-  {
-   "voters": 1001,
-   "term": "3",
-   "price": 1490
-  },
-  {
-   "voters": 1001,
-   "term": "pass",
+   "plan": "complete",
    "price": 250
   },
   {
-   "voters": 1500,
-   "term": "1",
-   "price": 620
-  },
-  {
-   "voters": 1500,
-   "term": "2",
-   "price": 1120
-  },
-  {
-   "voters": 1500,
-   "term": "3",
-   "price": 1490
-  },
-  {
-   "voters": 1500,
+   "voters": 60,
    "term": "pass",
+   "plan": "count",
+   "price": 20
+  },
+  {
+   "voters": 60,
+   "term": "pass",
+   "plan": "vote",
+   "price": 30
+  },
+  {
+   "voters": 60,
+   "term": "pass",
+   "plan": "complete",
+   "price": 40
+  },
+  {
+   "voters": 100,
+   "term": "1",
+   "plan": "count",
+   "price": 65
+  },
+  {
+   "voters": 100,
+   "term": "1",
+   "plan": "vote",
+   "price": 105
+  },
+  {
+   "voters": 100,
+   "term": "1",
+   "plan": "complete",
+   "price": 140
+  },
+  {
+   "voters": 100,
+   "term": "2",
+   "plan": "count",
+   "price": 115
+  },
+  {
+   "voters": 100,
+   "term": "2",
+   "plan": "vote",
+   "price": 190
+  },
+  {
+   "voters": 100,
+   "term": "2",
+   "plan": "complete",
+   "price": 255
+  },
+  {
+   "voters": 100,
+   "term": "3",
+   "plan": "count",
+   "price": 155
+  },
+  {
+   "voters": 100,
+   "term": "3",
+   "plan": "vote",
+   "price": 255
+  },
+  {
+   "voters": 100,
+   "term": "3",
+   "plan": "complete",
+   "price": 340
+  },
+  {
+   "voters": 100,
+   "term": "pass",
+   "plan": "count",
+   "price": 25
+  },
+  {
+   "voters": 100,
+   "term": "pass",
+   "plan": "vote",
+   "price": 40
+  },
+  {
+   "voters": 100,
+   "term": "pass",
+   "plan": "complete",
+   "price": 55
+  },
+  {
+   "voters": 101,
+   "term": "1",
+   "plan": "count",
+   "price": 70
+  },
+  {
+   "voters": 101,
+   "term": "1",
+   "plan": "vote",
+   "price": 115
+  },
+  {
+   "voters": 101,
+   "term": "1",
+   "plan": "complete",
+   "price": 150
+  },
+  {
+   "voters": 101,
+   "term": "2",
+   "plan": "count",
+   "price": 120
+  },
+  {
+   "voters": 101,
+   "term": "2",
+   "plan": "vote",
+   "price": 205
+  },
+  {
+   "voters": 101,
+   "term": "2",
+   "plan": "complete",
+   "price": 270
+  },
+  {
+   "voters": 101,
+   "term": "3",
+   "plan": "count",
+   "price": 160
+  },
+  {
+   "voters": 101,
+   "term": "3",
+   "plan": "vote",
+   "price": 270
+  },
+  {
+   "voters": 101,
+   "term": "3",
+   "plan": "complete",
+   "price": 360
+  },
+  {
+   "voters": 101,
+   "term": "pass",
+   "plan": "count",
+   "price": 25
+  },
+  {
+   "voters": 101,
+   "term": "pass",
+   "plan": "vote",
+   "price": 45
+  },
+  {
+   "voters": 101,
+   "term": "pass",
+   "plan": "complete",
+   "price": 60
+  },
+  {
+   "voters": 137,
+   "term": "1",
+   "plan": "count",
+   "price": 80
+  },
+  {
+   "voters": 137,
+   "term": "1",
+   "plan": "vote",
+   "price": 130
+  },
+  {
+   "voters": 137,
+   "term": "1",
+   "plan": "complete",
+   "price": 175
+  },
+  {
+   "voters": 137,
+   "term": "2",
+   "plan": "count",
+   "price": 140
+  },
+  {
+   "voters": 137,
+   "term": "2",
+   "plan": "vote",
+   "price": 235
+  },
+  {
+   "voters": 137,
+   "term": "2",
+   "plan": "complete",
+   "price": 315
+  },
+  {
+   "voters": 137,
+   "term": "3",
+   "plan": "count",
+   "price": 190
+  },
+  {
+   "voters": 137,
+   "term": "3",
+   "plan": "vote",
+   "price": 315
+  },
+  {
+   "voters": 137,
+   "term": "3",
+   "plan": "complete",
+   "price": 420
+  },
+  {
+   "voters": 137,
+   "term": "pass",
+   "plan": "count",
+   "price": 30
+  },
+  {
+   "voters": 137,
+   "term": "pass",
+   "plan": "vote",
+   "price": 50
+  },
+  {
+   "voters": 137,
+   "term": "pass",
+   "plan": "complete",
+   "price": 70
+  },
+  {
+   "voters": 250,
+   "term": "1",
+   "plan": "count",
+   "price": 115
+  },
+  {
+   "voters": 250,
+   "term": "1",
+   "plan": "vote",
+   "price": 190
+  },
+  {
+   "voters": 250,
+   "term": "1",
+   "plan": "complete",
    "price": 250
   },
   {
-   "voters": 2500,
-   "term": "1",
-   "price": 620
-  },
-  {
-   "voters": 2500,
+   "voters": 250,
    "term": "2",
-   "price": 1120
+   "plan": "count",
+   "price": 205
   },
   {
-   "voters": 2500,
+   "voters": 250,
+   "term": "2",
+   "plan": "vote",
+   "price": 340
+  },
+  {
+   "voters": 250,
+   "term": "2",
+   "plan": "complete",
+   "price": 450
+  },
+  {
+   "voters": 250,
    "term": "3",
-   "price": 1490
+   "plan": "count",
+   "price": 270
   },
   {
-   "voters": 2500,
+   "voters": 250,
+   "term": "3",
+   "plan": "vote",
+   "price": 450
+  },
+  {
+   "voters": 250,
+   "term": "3",
+   "plan": "complete",
+   "price": 600
+  },
+  {
+   "voters": 250,
    "term": "pass",
+   "plan": "count",
+   "price": 45
+  },
+  {
+   "voters": 250,
+   "term": "pass",
+   "plan": "vote",
+   "price": 75
+  },
+  {
+   "voters": 250,
+   "term": "pass",
+   "plan": "complete",
+   "price": 100
+  },
+  {
+   "voters": 251,
+   "term": "1",
+   "plan": "count",
+   "price": 115
+  },
+  {
+   "voters": 251,
+   "term": "1",
+   "plan": "vote",
+   "price": 190
+  },
+  {
+   "voters": 251,
+   "term": "1",
+   "plan": "complete",
+   "price": 255
+  },
+  {
+   "voters": 251,
+   "term": "2",
+   "plan": "count",
+   "price": 205
+  },
+  {
+   "voters": 251,
+   "term": "2",
+   "plan": "vote",
+   "price": 345
+  },
+  {
+   "voters": 251,
+   "term": "2",
+   "plan": "complete",
+   "price": 460
+  },
+  {
+   "voters": 251,
+   "term": "3",
+   "plan": "count",
+   "price": 275
+  },
+  {
+   "voters": 251,
+   "term": "3",
+   "plan": "vote",
+   "price": 460
+  },
+  {
+   "voters": 251,
+   "term": "3",
+   "plan": "complete",
+   "price": 615
+  },
+  {
+   "voters": 251,
+   "term": "pass",
+   "plan": "count",
+   "price": 45
+  },
+  {
+   "voters": 251,
+   "term": "pass",
+   "plan": "vote",
+   "price": 75
+  },
+  {
+   "voters": 251,
+   "term": "pass",
+   "plan": "complete",
+   "price": 100
+  },
+  {
+   "voters": 300,
+   "term": "1",
+   "plan": "count",
+   "price": 125
+  },
+  {
+   "voters": 300,
+   "term": "1",
+   "plan": "vote",
+   "price": 210
+  },
+  {
+   "voters": 300,
+   "term": "1",
+   "plan": "complete",
+   "price": 280
+  },
+  {
+   "voters": 300,
+   "term": "2",
+   "plan": "count",
+   "price": 225
+  },
+  {
+   "voters": 300,
+   "term": "2",
+   "plan": "vote",
+   "price": 380
+  },
+  {
+   "voters": 300,
+   "term": "2",
+   "plan": "complete",
+   "price": 505
+  },
+  {
+   "voters": 300,
+   "term": "3",
+   "plan": "count",
+   "price": 300
+  },
+  {
+   "voters": 300,
+   "term": "3",
+   "plan": "vote",
+   "price": 505
+  },
+  {
+   "voters": 300,
+   "term": "3",
+   "plan": "complete",
+   "price": 670
+  },
+  {
+   "voters": 300,
+   "term": "pass",
+   "plan": "count",
+   "price": 50
+  },
+  {
+   "voters": 300,
+   "term": "pass",
+   "plan": "vote",
+   "price": 85
+  },
+  {
+   "voters": 300,
+   "term": "pass",
+   "plan": "complete",
+   "price": 110
+  },
+  {
+   "voters": 301,
+   "term": "1",
+   "plan": "count",
+   "price": 140
+  },
+  {
+   "voters": 301,
+   "term": "1",
+   "plan": "vote",
+   "price": 230
+  },
+  {
+   "voters": 301,
+   "term": "1",
+   "plan": "complete",
+   "price": 310
+  },
+  {
+   "voters": 301,
+   "term": "2",
+   "plan": "count",
    "price": 250
   },
   {
-   "voters": 2501,
-   "term": "1",
-   "price": 940
-  },
-  {
-   "voters": 2501,
+   "voters": 301,
    "term": "2",
-   "price": 1695
+   "plan": "vote",
+   "price": 415
   },
   {
-   "voters": 2501,
-   "term": "3",
-   "price": 2260
-  },
-  {
-   "voters": 2501,
-   "term": "pass",
-   "price": 375
-  },
-  {
-   "voters": 4000,
-   "term": "1",
-   "price": 940
-  },
-  {
-   "voters": 4000,
+   "voters": 301,
    "term": "2",
-   "price": 1695
+   "plan": "complete",
+   "price": 555
   },
   {
-   "voters": 4000,
+   "voters": 301,
    "term": "3",
-   "price": 2260
+   "plan": "count",
+   "price": 335
   },
   {
-   "voters": 4000,
+   "voters": 301,
+   "term": "3",
+   "plan": "vote",
+   "price": 555
+  },
+  {
+   "voters": 301,
+   "term": "3",
+   "plan": "complete",
+   "price": 740
+  },
+  {
+   "voters": 301,
    "term": "pass",
-   "price": 375
+   "plan": "count",
+   "price": 55
+  },
+  {
+   "voters": 301,
+   "term": "pass",
+   "plan": "vote",
+   "price": 90
+  },
+  {
+   "voters": 301,
+   "term": "pass",
+   "plan": "complete",
+   "price": 125
+  },
+  {
+   "voters": 480,
+   "term": "1",
+   "plan": "count",
+   "price": 175
+  },
+  {
+   "voters": 480,
+   "term": "1",
+   "plan": "vote",
+   "price": 290
+  },
+  {
+   "voters": 480,
+   "term": "1",
+   "plan": "complete",
+   "price": 385
+  },
+  {
+   "voters": 480,
+   "term": "2",
+   "plan": "count",
+   "price": 310
+  },
+  {
+   "voters": 480,
+   "term": "2",
+   "plan": "vote",
+   "price": 520
+  },
+  {
+   "voters": 480,
+   "term": "2",
+   "plan": "complete",
+   "price": 690
+  },
+  {
+   "voters": 480,
+   "term": "3",
+   "plan": "count",
+   "price": 415
+  },
+  {
+   "voters": 480,
+   "term": "3",
+   "plan": "vote",
+   "price": 690
+  },
+  {
+   "voters": 480,
+   "term": "3",
+   "plan": "complete",
+   "price": 920
+  },
+  {
+   "voters": 480,
+   "term": "pass",
+   "plan": "count",
+   "price": 70
+  },
+  {
+   "voters": 480,
+   "term": "pass",
+   "plan": "vote",
+   "price": 115
+  },
+  {
+   "voters": 480,
+   "term": "pass",
+   "plan": "complete",
+   "price": 155
+  },
+  {
+   "voters": 500,
+   "term": "1",
+   "plan": "count",
+   "price": 175
+  },
+  {
+   "voters": 500,
+   "term": "1",
+   "plan": "vote",
+   "price": 290
+  },
+  {
+   "voters": 500,
+   "term": "1",
+   "plan": "complete",
+   "price": 385
+  },
+  {
+   "voters": 500,
+   "term": "2",
+   "plan": "count",
+   "price": 310
+  },
+  {
+   "voters": 500,
+   "term": "2",
+   "plan": "vote",
+   "price": 520
+  },
+  {
+   "voters": 500,
+   "term": "2",
+   "plan": "complete",
+   "price": 690
+  },
+  {
+   "voters": 500,
+   "term": "3",
+   "plan": "count",
+   "price": 415
+  },
+  {
+   "voters": 500,
+   "term": "3",
+   "plan": "vote",
+   "price": 690
+  },
+  {
+   "voters": 500,
+   "term": "3",
+   "plan": "complete",
+   "price": 920
+  },
+  {
+   "voters": 500,
+   "term": "pass",
+   "plan": "count",
+   "price": 70
+  },
+  {
+   "voters": 500,
+   "term": "pass",
+   "plan": "vote",
+   "price": 115
+  },
+  {
+   "voters": 500,
+   "term": "pass",
+   "plan": "complete",
+   "price": 155
+  },
+  {
+   "voters": 999,
+   "term": "1",
+   "plan": "count",
+   "price": 265
+  },
+  {
+   "voters": 999,
+   "term": "1",
+   "plan": "vote",
+   "price": 445
+  },
+  {
+   "voters": 999,
+   "term": "1",
+   "plan": "complete",
+   "price": 590
+  },
+  {
+   "voters": 999,
+   "term": "2",
+   "plan": "count",
+   "price": 480
+  },
+  {
+   "voters": 999,
+   "term": "2",
+   "plan": "vote",
+   "price": 795
+  },
+  {
+   "voters": 999,
+   "term": "2",
+   "plan": "complete",
+   "price": 1065
+  },
+  {
+   "voters": 999,
+   "term": "3",
+   "plan": "count",
+   "price": 640
+  },
+  {
+   "voters": 999,
+   "term": "3",
+   "plan": "vote",
+   "price": 1065
+  },
+  {
+   "voters": 999,
+   "term": "3",
+   "plan": "complete",
+   "price": 1415
+  },
+  {
+   "voters": 999,
+   "term": "pass",
+   "plan": "count",
+   "price": 105
+  },
+  {
+   "voters": 999,
+   "term": "pass",
+   "plan": "vote",
+   "price": 175
+  },
+  {
+   "voters": 999,
+   "term": "pass",
+   "plan": "complete",
+   "price": 235
+  },
+  {
+   "voters": 1000,
+   "term": "1",
+   "plan": "count",
+   "price": 265
+  },
+  {
+   "voters": 1000,
+   "term": "1",
+   "plan": "vote",
+   "price": 445
+  },
+  {
+   "voters": 1000,
+   "term": "1",
+   "plan": "complete",
+   "price": 590
+  },
+  {
+   "voters": 1000,
+   "term": "2",
+   "plan": "count",
+   "price": 480
+  },
+  {
+   "voters": 1000,
+   "term": "2",
+   "plan": "vote",
+   "price": 795
+  },
+  {
+   "voters": 1000,
+   "term": "2",
+   "plan": "complete",
+   "price": 1065
+  },
+  {
+   "voters": 1000,
+   "term": "3",
+   "plan": "count",
+   "price": 640
+  },
+  {
+   "voters": 1000,
+   "term": "3",
+   "plan": "vote",
+   "price": 1065
+  },
+  {
+   "voters": 1000,
+   "term": "3",
+   "plan": "complete",
+   "price": 1415
+  },
+  {
+   "voters": 1000,
+   "term": "pass",
+   "plan": "count",
+   "price": 105
+  },
+  {
+   "voters": 1000,
+   "term": "pass",
+   "plan": "vote",
+   "price": 175
+  },
+  {
+   "voters": 1000,
+   "term": "pass",
+   "plan": "complete",
+   "price": 235
+  },
+  {
+   "voters": 1001,
+   "term": "1",
+   "plan": "count",
+   "price": 305
+  },
+  {
+   "voters": 1001,
+   "term": "1",
+   "plan": "vote",
+   "price": 510
+  },
+  {
+   "voters": 1001,
+   "term": "1",
+   "plan": "complete",
+   "price": 680
+  },
+  {
+   "voters": 1001,
+   "term": "2",
+   "plan": "count",
+   "price": 550
+  },
+  {
+   "voters": 1001,
+   "term": "2",
+   "plan": "vote",
+   "price": 915
+  },
+  {
+   "voters": 1001,
+   "term": "2",
+   "plan": "complete",
+   "price": 1220
+  },
+  {
+   "voters": 1001,
+   "term": "3",
+   "plan": "count",
+   "price": 730
+  },
+  {
+   "voters": 1001,
+   "term": "3",
+   "plan": "vote",
+   "price": 1220
+  },
+  {
+   "voters": 1001,
+   "term": "3",
+   "plan": "complete",
+   "price": 1625
+  },
+  {
+   "voters": 1001,
+   "term": "pass",
+   "plan": "count",
+   "price": 120
+  },
+  {
+   "voters": 1001,
+   "term": "pass",
+   "plan": "vote",
+   "price": 205
+  },
+  {
+   "voters": 1001,
+   "term": "pass",
+   "plan": "complete",
+   "price": 270
+  },
+  {
+   "voters": 2500,
+   "term": "1",
+   "plan": "count",
+   "price": 470
+  },
+  {
+   "voters": 2500,
+   "term": "1",
+   "plan": "vote",
+   "price": 780
+  },
+  {
+   "voters": 2500,
+   "term": "1",
+   "plan": "complete",
+   "price": 1040
+  },
+  {
+   "voters": 2500,
+   "term": "2",
+   "plan": "count",
+   "price": 845
+  },
+  {
+   "voters": 2500,
+   "term": "2",
+   "plan": "vote",
+   "price": 1405
+  },
+  {
+   "voters": 2500,
+   "term": "2",
+   "plan": "complete",
+   "price": 1875
+  },
+  {
+   "voters": 2500,
+   "term": "3",
+   "plan": "count",
+   "price": 1125
+  },
+  {
+   "voters": 2500,
+   "term": "3",
+   "plan": "vote",
+   "price": 1875
+  },
+  {
+   "voters": 2500,
+   "term": "3",
+   "plan": "complete",
+   "price": 2500
+  },
+  {
+   "voters": 2500,
+   "term": "pass",
+   "plan": "count",
+   "price": 190
+  },
+  {
+   "voters": 2500,
+   "term": "pass",
+   "plan": "vote",
+   "price": 315
+  },
+  {
+   "voters": 2500,
+   "term": "pass",
+   "plan": "complete",
+   "price": 415
+  },
+  {
+   "voters": 4999,
+   "term": "1",
+   "plan": "count",
+   "price": 720
+  },
+  {
+   "voters": 4999,
+   "term": "1",
+   "plan": "vote",
+   "price": 1200
+  },
+  {
+   "voters": 4999,
+   "term": "1",
+   "plan": "complete",
+   "price": 1600
+  },
+  {
+   "voters": 4999,
+   "term": "2",
+   "plan": "count",
+   "price": 1295
+  },
+  {
+   "voters": 4999,
+   "term": "2",
+   "plan": "vote",
+   "price": 2160
+  },
+  {
+   "voters": 4999,
+   "term": "2",
+   "plan": "complete",
+   "price": 2885
+  },
+  {
+   "voters": 4999,
+   "term": "3",
+   "plan": "count",
+   "price": 1730
+  },
+  {
+   "voters": 4999,
+   "term": "3",
+   "plan": "vote",
+   "price": 2885
+  },
+  {
+   "voters": 4999,
+   "term": "3",
+   "plan": "complete",
+   "price": 3845
+  },
+  {
+   "voters": 4999,
+   "term": "pass",
+   "plan": "count",
+   "price": 290
+  },
+  {
+   "voters": 4999,
+   "term": "pass",
+   "plan": "vote",
+   "price": 480
+  },
+  {
+   "voters": 4999,
+   "term": "pass",
+   "plan": "complete",
+   "price": 640
   },
   {
    "voters": 5000,
    "term": "1",
-   "price": 940
+   "plan": "count",
+   "price": 720
+  },
+  {
+   "voters": 5000,
+   "term": "1",
+   "plan": "vote",
+   "price": 1200
+  },
+  {
+   "voters": 5000,
+   "term": "1",
+   "plan": "complete",
+   "price": 1600
   },
   {
    "voters": 5000,
    "term": "2",
-   "price": 1695
+   "plan": "count",
+   "price": 1295
+  },
+  {
+   "voters": 5000,
+   "term": "2",
+   "plan": "vote",
+   "price": 2160
+  },
+  {
+   "voters": 5000,
+   "term": "2",
+   "plan": "complete",
+   "price": 2885
   },
   {
    "voters": 5000,
    "term": "3",
-   "price": 2260
+   "plan": "count",
+   "price": 1730
+  },
+  {
+   "voters": 5000,
+   "term": "3",
+   "plan": "vote",
+   "price": 2885
+  },
+  {
+   "voters": 5000,
+   "term": "3",
+   "plan": "complete",
+   "price": 3845
   },
   {
    "voters": 5000,
    "term": "pass",
-   "price": 375
+   "plan": "count",
+   "price": 290
+  },
+  {
+   "voters": 5000,
+   "term": "pass",
+   "plan": "vote",
+   "price": 480
+  },
+  {
+   "voters": 5000,
+   "term": "pass",
+   "plan": "complete",
+   "price": 640
   }
  ]
 }

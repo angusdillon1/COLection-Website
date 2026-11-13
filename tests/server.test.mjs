@@ -50,11 +50,36 @@ test("checkout works the price out itself and ignores any price sent", async () 
     body: JSON.stringify({ org: " Carlton  Netball Club ", email: "buyer@club.test", voters: 250, term: "2", price: 1 }) }), env);
   assert.equal(res.status, 200);
   assert.equal((await res.json()).url, "https://checkout.stripe.test/x");
-  assert.equal(sent.body.get("line_items[0][price_data][unit_amount]"), String(280 * 100));
+  assert.equal(sent.body.get("line_items[0][price_data][unit_amount]"), String(450 * 100));       // (no plan sent: Complete)
+  assert.equal(sent.body.get("metadata[plan]"), "complete");
   assert.equal(sent.body.get("line_items[0][price_data][currency]"), "aud");
   assert.equal(sent.body.get("metadata[org]"), "Carlton Netball Club");
   assert.equal(sent.auth, "Bearer sk_test");
   assert.match(sent.body.get("success_url"), /success\.html\?session_id=\{CHECKOUT_SESSION_ID\}$/);
+});
+
+test("checkout charges for the plan that was chosen", async () => {
+  let sent;
+  const handle = makeHandler({ fetch: async (url, init) => { sent = new URLSearchParams(init.body);
+    return new Response(JSON.stringify({ url: "https://checkout.stripe.test/x" }), { status: 200 }); } });
+  const res = await handle(new Request("https://api.test/api/checkout", { method: "POST",
+    body: JSON.stringify({ org: "Carlton Netball Club", email: "buyer@club.test", voters: 250, term: "pass", plan: "count" }) }), env);
+  assert.equal(res.status, 200);
+  assert.equal(sent.get("line_items[0][price_data][unit_amount]"), String(45 * 100));
+  assert.equal(sent.get("metadata[plan]"), "count");
+  assert.match(sent.get("line_items[0][price_data][product_data][name]"), /Count plan/);
+});
+
+test("a session that says which plan was bought gets a licence for that plan", async () => {
+  const mails = [];
+  const handle = makeHandler({ now: () => 1792000100, fetch: async (url, init) => { mails.push(JSON.parse(init.body)); return new Response("{}", { status: 200 }); } });
+  const event = { type: "checkout.session.completed", data: { object: sessionObject({ metadata: { org: "Carlton Netball Club", voters: "250", term: "1", plan: "vote" } }) } };
+  const { raw, header } = await signedWebhook(event);
+  const res = await handle(new Request("https://api.test/api/webhook", { method: "POST", body: raw, headers: { "stripe-signature": header } }), env);
+  assert.equal(res.status, 200);
+  const line = mails[0].text.split("\n").find((l) => l.startsWith("COL1."));
+  assert.equal(JSON.parse(Buffer.from(line.split(".")[1], "base64url")).plan, "vote");
+  assert.match(mails[0].text, /Vote plan/);
 });
 
 test("checkout refuses bad requests without calling stripe", async () => {
@@ -63,7 +88,7 @@ test("checkout refuses bad requests without calling stripe", async () => {
   for (const bad of [{ org: "", email: "a@b.co", voters: 100, term: "1" }, { org: "X", email: "nope", voters: 100, term: "1" },
     { org: "X", email: "a@b.co", voters: 50, term: "1" }, { org: "X", email: "a@b.co", voters: 5001, term: "1" },
     { org: "X", email: "a@b.co", voters: 100, term: "7" }, { org: "X", email: "a@b.co", voters: 100.5, term: "1" },
-    { org: "X", email: "a@b.co", voters: "abc", term: "1" }]) {
+    { org: "X", email: "a@b.co", voters: "abc", term: "1" }, { org: "X", email: "a@b.co", voters: 100, term: "1", plan: "gold" }]) {
     const res = await ask(bad);
     assert.equal(res.status, 400, JSON.stringify(bad));
     assert.ok((await res.json()).error);
