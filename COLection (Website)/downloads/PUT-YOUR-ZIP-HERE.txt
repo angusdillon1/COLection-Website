@@ -1,7 +1,0 @@
-Put the program's files in this folder:
-  COLection-Setup-0.2.3.exe   the installer (the main Download button links to it)
-  COLection-0.2.3.zip         the no-installer version (the small link under the button)
-
-If your files have different names, or live on GitHub Releases, change the links in index.html (search for "TODO").
-GitHub Pages refuses single files over 100 MB. If the installer is larger, attach both files to a GitHub Release
-and point the two links at the release instead.
