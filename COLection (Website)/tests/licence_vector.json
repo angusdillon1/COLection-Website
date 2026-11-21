@@ -1,0 +1,13 @@
+{
+ "note": "Made by tests/make_vector.mjs. The key is a published throw-away: it signs nothing real.",
+ "public_key": "WcFdaQOyF_4UeuSGwtX_018W659OHb5xUzDA3TUfDJ4",
+ "licence": "COL1.eyJ2IjoxLCJraWQiOiJ3ZWIiLCJvcmciOiJDYXJsdG9uIE5ldGJhbGwgQ2x1YiDigJMgY2Fmw6kgXCJxdW90ZVwiIiwicGxhbiI6ImNsdWIiLCJ2b3RlcnMiOjI1MCwiaXNzdWVkIjoiMjAyNi0xMC0xNSIsImV4cGlyZXMiOiIyMDI3LTEwLTE1IiwiaWQiOiJXLVRFU1RWRUNUIn0.bh61RR5Zwcuh5EXlmgv-q03L5MS-lISy-M0pOxrt811oMrbtk8Tgvvc-kKQaGu5nEH0_y595QnAVqlHGGc7jAg",
+ "details": {
+  "org": "Carlton Netball Club – café \"quote\"",
+  "plan": "club",
+  "voters": 250,
+  "issued": "2026-10-15",
+  "expires": "2027-10-15",
+  "id": "W-TESTVECT"
+ }
+}

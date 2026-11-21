@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Terms | COLection</title>
+  <meta name="description" content="The terms for buying a COLection licence.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1a2e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="top" id="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="pricing.html">Pricing</a>
+        <a href="help.html" class="hide-xs">Help</a>
+        <a href="contact.html" class="hide-sm">Contact</a>
+        <a class="btn" href="download.html">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head"><div class="wrap narrow"><h1>Terms.</h1><p class="lead">In plain words, so you know what you're agreeing to.</p></div></section>
+    <section class="section" style="padding-top:0" aria-label="Terms"><div class="wrap narrow prose">
+        <h2>What you are buying</h2>
+        <p>A licence to use COLection for your organisation, for the number of voters and the period you chose. It removes the free version's limits (50 voters in an election) and the "made with the free version" line on reports and printouts. A licence has a start date (usually the day you buy it) and an end date, and both are shown in the program.</p>
+        <h2>Who we are</h2>
+        <p>COLection is sold by <span id="terms-seller">the maker of COLection</span>, in Victoria, Australia. Contact: <a id="terms-mail" href="#">email</a>.</p>
+        <h2>Using the licence</h2>
+        <p>The licence is for your organisation and its elections. You may use it on any computers your organisation uses. Please do not give it to other organisations, or publish it. The voter limit counts the people on an election's roll, including people registered at the desk as they arrive.</p>
+        <h2>When a licence ends</h2>
+        <p>Your elections, results and exports always stay yours and stay open. After the end date the program works as the free version. A licence does not renew by itself; nobody is charged again unless you buy again.</p>
+        <h2>Payment and refunds</h2>
+        <p>Prices are in Australian dollars and are paid once, by bank transfer against an invoice we send you. We send your licence once the payment arrives. If the program does not work for you, tell us within <span id="terms-refund">14</span> days of buying and we will refund you in full. Nothing in these terms limits your rights under the Australian Consumer Law.</p>
+        <h2>Your data</h2>
+        <p>COLection runs on your computer. Your elections, voters and ballots are never sent to us. When you buy, we receive your organisation name, your email address and the payment details on your bank transfer; we use them only to issue your licence and to contact you about it.</p>
+        <h2>No guarantees about outcomes</h2>
+        <p>We work hard to make the count correct and checkable, and every round is shown so anyone can check it. You remain responsible for running your election according to your own rules. To the extent the law allows, our liability is limited to the price you paid.</p>
+        <h2>Installing and updates</h2>
+        <p>The installer is not yet digitally signed, so Windows may show a warning the first time (see the Download section). You can remove the program at any time from Windows Settings; your elections are kept in your own files.</p>
+        <h2>Open-source software</h2>
+        <p>COLection includes open-source components under their own licences (Help &gt; Open-source licences in the program). Those licences are not changed by these terms.</p>
+        <p class="fine">Last updated October 2026.</p>
+      </div></section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav aria-label="Footer">
+        <a href="download.html">Download</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="help.html">Help</a>
+        <a href="changelog.html">What's new</a>
+        <a href="contact.html">Contact</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+      <p class="fine">&copy; 2026 COLection. Election software for clubs, societies and colleges. Made in Victoria, Australia.</p>
+    </div>
+  </footer>
+  <script src="js/site-config.js"></script>
+  <script src="js/site.js"></script>
+  <script>(function(){var c=window.COL_SITE||{},a=document.getElementById("terms-mail"),s=document.getElementById("terms-seller"),r=document.getElementById("terms-refund");if(a){a.href="mailto:"+(c.CONTACT_EMAIL||"");a.textContent=c.CONTACT_EMAIL||"email";}if(s&&c.SELLER)s.textContent=c.SELLER;if(r&&c.REFUND_DAYS)r.textContent=c.REFUND_DAYS;})();</script>
+</body>
+</html>

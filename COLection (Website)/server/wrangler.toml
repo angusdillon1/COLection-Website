@@ -1,0 +1,12 @@
+name = "colection-licences"
+main = "worker.mjs"
+compatibility_date = "2025-01-01"
+
+[vars]
+SITE_URL = "https://YOUR-SITE.example"          # where the website lives, no trailing slash
+SITE_ORIGIN = "https://YOUR-SITE.example"       # same, for browser permission (CORS)
+EMAIL_FROM = "COLection <licences@YOUR-SITE.example>"
+CONTACT_EMAIL = "colectionhelp@gmail.com"
+
+# Secrets are NOT written here. Set each with:  npx wrangler secret put NAME
+#   STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, RESEND_API_KEY, LICENCE_SIGNING_KEY

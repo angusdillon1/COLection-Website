@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pricing | COLection</title>
+  <meta name="description" content="COLection is free for up to 50 voters. Bigger elections pay once, by size.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1a2e" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to the content</a>
+  <header class="top" id="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="pricing.html" aria-current="page">Pricing</a>
+        <a href="help.html" class="hide-xs">Help</a>
+        <a href="contact.html" class="hide-sm">Contact</a>
+        <a class="btn" href="download.html">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <h1>Free up to 50 voters.</h1>
+        <p class="lead">Bigger? Pick a size and a length, and pay once. No subscription.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-label="Work out your price">
+      <div class="wrap">
+        <form id="buy" class="calc" novalidate>
+          <div class="calc-controls">
+            <div>
+              <label class="field-title" for="voters">How many voters?</label>
+              <p class="size-shown" id="voters-shown">Up to 250 voters</p>
+              <input type="range" id="voters" name="voters" min="0" max="50" value="20" aria-describedby="price-note">
+              <div class="ends" aria-hidden="true"><span>50 (free)</span><span>5,000</span></div>
+              <div class="size-type"><label for="voters-number">Or type a number</label><input id="voters-number" type="number" inputmode="numeric" min="1" max="1000000" step="1" value="250"></div>
+              <p class="fine" style="margin-top:12px">Covers every election you run, with up to this many voters in each.</p>
+            </div>
+
+            <fieldset>
+              <legend class="field-title">What do you need?</legend>
+              <div class="choices three">
+                <label class="choice"><input type="radio" name="plan" value="count"><span><strong>Count</strong><small>Count votes you collected on paper or in a form.</small><em data-plan-price></em></span></label>
+                <label class="choice"><input type="radio" name="plan" value="vote"><span><strong>Vote</strong><small>Run the vote: booths, phones, the desk and paper ballots.</small><em data-plan-price></em></span></label>
+                <label class="choice"><input type="radio" name="plan" value="complete" checked><span><strong>Complete</strong><small>Everything, plus voting from home by link.</small><em data-plan-price></em></span></label>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend class="field-title">For how long?</legend>
+              <div class="choices four">
+                <label class="choice"><input type="radio" name="term" value="pass"><span><strong>30 days</strong><small>One election</small></span></label>
+                <label class="choice"><input type="radio" name="term" value="1" checked><span><strong>1 year</strong><small>Most popular</small></span></label>
+                <label class="choice"><input type="radio" name="term" value="2"><span><strong>2 years</strong><small>10% off a year</small></span></label>
+                <label class="choice"><input type="radio" name="term" value="3"><span><strong>3 years</strong><small>20% off a year</small></span></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <aside class="summary" aria-label="Your price">
+            <div aria-live="polite">
+              <p class="amount" id="price">-</p>
+              <p class="detail" id="price-detail" style="margin-top:8px"></p>
+            </div>
+            <p class="fine" id="price-note"></p>
+            <div class="two">
+              <div><label for="org">Organisation</label><input id="org" name="org" autocomplete="organization" maxlength="80" placeholder="Carlton Netball Club"></div>
+              <div><label for="email">Email for the licence</label><input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="you@example.com"></div>
+            </div>
+            <label class="agree"><input type="checkbox" id="agree"> <span>I've read the <a href="terms.html" target="_blank" rel="noopener">terms</a>.</span></label>
+            <button class="btn big" id="buy-button" type="submit">Pay</button>
+            <p class="buy-message" id="buy-message" role="status"></p>
+            <ul class="included">
+              <li>Every feature in your plan</li>
+              <li>As many elections as you like</li>
+              <li>Works offline, on every computer you use</li>
+              <li>When it ends, nothing is locked or lost</li>
+            </ul>
+          </aside>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="examples-title">
+      <div class="wrap">
+        <h2 id="examples-title">Common sizes</h2>
+        <p class="table-pick"><label for="examples-term">Prices for</label>
+          <select id="examples-term"><option value="pass">30 days</option><option value="1" selected>1 year</option><option value="2">2 years</option><option value="3">3 years</option></select></p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th scope="col">Voters</th><th scope="col">Count</th><th scope="col">Vote</th><th scope="col">Complete</th></tr></thead>
+            <tbody id="examples"></tbody>
+          </table>
+        </div>
+        <p class="fine" style="margin-top:12px">Australian dollars. Over 5,000 voters, or need a purchase order? <a href="#" id="quote-link">Ask for a quote</a>.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0" aria-labelledby="faq-title">
+      <div class="wrap narrow">
+        <h2 id="faq-title" style="margin-bottom:24px">Questions</h2>
+        <div class="qa">
+          <details><summary>Which plan do I need?</summary><div><p><strong>Count</strong> if people already voted, on paper or in a form like Google Forms. <strong>Vote</strong> if COLection runs the vote on the day. <strong>Complete</strong> if people also vote from home with a link. Every plan includes the official report and the results page.</p></div></details>
+          <details><summary>What counts as a voter?</summary><div><p>Anyone on an election's roll. A 500-voter licence covers any election with up to 500 people on the roll, as many times as you like.</p></div></details>
+          <details><summary>We don't have a voter list.</summary><div><p>Register people at the desk as they arrive. The limit only counts people registered, so you pay for who turns up. Over 5,000? <a href="#" id="big-link">Ask for a quote</a>.</p></div></details>
+          <details><summary>What if I pick a licence that's too small?</summary><div><p>Nothing is lost, and the program tells you. Email us and what you paid goes towards the bigger one.</p></div></details>
+          <details><summary>How do I pay?</summary><div><p>By bank transfer. Press the button above and your email opens with the details filled in. We send an invoice, then your licence once it's paid. Purchase orders are fine, or just <a href="#" id="invoice-link">email us</a>.</p></div></details>
+          <details><summary>Can I get a refund?</summary><div><p>Yes. Tell us within <span data-refund-days>14</span> days and we refund you in full.</p></div></details>
+          <details><summary>Can I use it on another computer?</summary><div><p>Yes. Paste the licence into any computer your organisation uses, including booths and a backup laptop.</p></div></details>
+          <details><summary>Does it check the licence online?</summary><div><p>No. It's checked on your computer. Nothing about your elections or voters leaves it.</p></div></details>
+          <details><summary>What happens when it ends?</summary><div><p>COLection goes back to the free version. Your elections, results and exports stay open.</p></div></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav aria-label="Footer">
+        <a href="download.html">Download</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="help.html">Help</a>
+        <a href="changelog.html">What's new</a>
+        <a href="contact.html">Contact</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+      <p class="fine">&copy; 2026 COLection. Election software for clubs, societies and colleges. Made in Victoria, Australia.</p>
+    </div>
+  </footer>
+  <script src="js/site-config.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/pricing-page.js"></script>
+  <script src="js/site.js"></script>
+  <script>
+    (function () {
+      var c = window.COL_SITE || {}, mail = "mailto:" + (c.CONTACT_EMAIL || "");
+      var q = document.getElementById("quote-link"), i = document.getElementById("invoice-link"), b = document.getElementById("big-link");
+      if (q) q.href = mail + "?subject=" + encodeURIComponent("COLection quote");
+      if (b) b.href = mail + "?subject=" + encodeURIComponent("COLection quote, large group");
+      if (i) i.href = mail + "?subject=" + encodeURIComponent("COLection invoice request");
+    })();
+  </script>
+</body>
+</html>
