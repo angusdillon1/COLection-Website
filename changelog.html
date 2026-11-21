@@ -2,43 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>What's new - COLection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>What's new | COLection</title>
   <meta name="description" content="What has changed in each version of COLection.">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1a2e" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
   <script>document.documentElement.classList.add("js");</script>
 </head>
-<body class="inner">
+<body>
   <a class="skip" href="#main">Skip to the content</a>
-
-  <header class="top" id="top-bar">
-    <a class="brand" href="index.html" aria-label="COLection, home">
-      <img src="images/colection-mark.svg" alt="" width="26" height="26">
-      <span>COLection</span>
-    </a>
-    <nav aria-label="Main">
-      <a href="how-it-works.html">How it works</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="help.html">Help</a>
-      <a class="pill" href="index.html#download">Download</a>
-    </nav>
+  <header class="top" id="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="pricing.html">Pricing</a>
+        <a href="help.html" class="hide-xs">Help</a>
+        <a href="contact.html" class="hide-sm">Contact</a>
+        <a class="btn" href="download.html">Download</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
-    <section class="page-hero" aria-labelledby="page-title">
-      <div class="wrap">
-        <h1 id="page-title">What's new.</h1>
-        <p class="sub">What has changed in each version.</p>
-      </div>
-    </section>
+    <section class="page-head"><div class="wrap"><h1>What's new.</h1><p class="lead">What changed in each version.</p></div></section>
+    <section class="section" style="padding-top:0" aria-label="Versions"><div class="wrap">
+        <article class="release">
+          <header><h2>0.9</h2><p class="when">November 2026</p></header>
+          <div>
+            <h3>Voting day</h3>
+            <ul>
+              <li>Connect booths, QR screens and extra desks before voting opens, and test each one from the desk.</li>
+              <li>Booths stay connected when voting closes, so reopening needs no re-joining.</li>
+              <li>Use a tablet or phone as the front-desk QR screen, with nothing to install.</li>
+              <li>Any free booth can show a voter's QR code. Each booth can show ballots, QR codes or both.</li>
+              <li>Optional time between voters: a short wait before the next ballot appears, and a rest after each voter.</li>
+              <li>Booths lock to the voting screen, and the desk is told if one is left.</li>
+              <li>A countdown across the top before voting opens and before it closes. Opening early asks first.</li>
+              <li>Voters missing a detail, such as International student, can still vote. The desk fills it in on the day, and online voters' details are checked before their ballot counts.</li>
+            </ul>
+            <h3>The ballot</h3>
+            <ul>
+              <li>Phones and online voting follow your ballot's look.</li>
+              <li>A smoother ballot on booths and phones: numbered badges, a progress bar and gentle movement, switched off for anyone who asks for less motion.</li>
+            </ul>
+            <h3>Nominations</h3>
+            <ul>
+              <li>Accepted applicants go straight onto the candidate list.</li>
+              <li>Ask a question only if an earlier answer fits, and let applicants finish later on any device.</li>
+              <li>Limit how many positions someone can stand for, and mark positions that can't be combined.</li>
+              <li>The form only offers positions the applicant can stand for.</li>
+              <li>A different profile for each position, if they like.</li>
+              <li>A deadline for confirming. New nominations come in by themselves while you're signed in.</li>
+              <li>Write your own wording for the outcome email.</li>
+            </ul>
+            <h3>People and lists</h3>
+            <ul>
+              <li>Big voter lists load fast: 5,000 names in a fraction of a second.</li>
+              <li>One column for each detail, with gaps highlighted, and Fill empty details to fill them in one go.</li>
+              <li>Two people with the same name but different IDs are kept as two voters.</li>
+              <li>Imported votes: a clear path through the five import parts, and people who filled in a second form are counted once for turnout.</li>
+            </ul>
+            <h3>Rules</h3>
+            <ul>
+              <li>"Nothing else": whoever wins this position can't hold any other.</li>
+              <li>One colour for the whole election, taken from your icon if you like. The ballot, the candidate form and the results page all follow it.</li>
+            </ul>
+            <h3>Count and results</h3>
+            <ul>
+              <li>See how long the count took. Everyone elected to a position sits together in one cell.</li>
+              <li>The quota and each round are explained in plain words, on screen and in the official report.</li>
+              <li>Turnout by group in the official report.</li>
+              <li>Landscape pages and smaller headings for wide tables in the data reports PDF.</li>
+              <li>A new results page, and a Showcase style that reveals the winners one position at a time. You can reveal each one live with a click.</li>
+              <li>Deleting an election asks for its exact name and its password.</li>
+            </ul>
+            <h3>Working together</h3>
+            <ul>
+              <li>Share an election with other COLection Online accounts and give each person a role: Co-organiser, Editor, Runner or Viewer. Changes reach everyone within seconds.</li>
+            </ul>
+            <h3>Smaller things</h3>
+            <ul>
+              <li>Marks in the step list show what's done, what's left and what needs a look. Click one to set your own.</li>
+              <li>The email window opens inside the election's window, with a preview of the email as it arrives.</li>
+              <li>Tick boxes under another tick box grey out with it. Closing a window with unsaved changes asks first.</li>
+              <li>A clear button in every search box, clearer dividers, a tidier time picker, toasts that stay longer, and a new splash screen.</li>
+              <li>Many fixes, including typing coming out backwards in the nomination form editor.</li>
+            </ul>
+          </div>
+        </article>
 
-    <section class="log" aria-label="Versions">
-      <div class="wrap">
         <article class="release">
           <header><h2>0.5</h2><p class="when">November 2026</p></header>
           <div>
@@ -154,28 +213,27 @@
             </ul>
           </div>
         </article>
-      </div>
-    </section>
-
+      </div></section>
   </main>
 
-  <footer class="foot" data-theme="dark">
-    <div class="wrap foot-row">
-      <a class="brand" href="index.html" aria-label="COLection, home">
-        <img src="images/colection-mark.svg" alt="" width="24" height="24">
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
         <span>COLection</span>
       </a>
-      <nav class="foot-nav" aria-label="Footer">
-        <a href="how-it-works.html">How it works</a>
-        <a href="counting.html">How counting works</a>
+      <nav aria-label="Footer">
+        <a href="download.html">Download</a>
+        <a href="pricing.html">Pricing</a>
         <a href="help.html">Help</a>
         <a href="changelog.html">What's new</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
         <a href="terms.html">Terms</a>
       </nav>
-      <p>Election software for any group. Version 0.2.3.</p>
+      <p class="fine">&copy; 2026 COLection. Election software for clubs, societies and colleges. Made in Victoria, Australia.</p>
     </div>
   </footer>
+  <script src="js/site-config.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>

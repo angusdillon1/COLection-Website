@@ -2,146 +2,234 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>COLection - election software for clubs and colleges</title>
-  <meta name="description" content="COLection is a program for Windows that runs your whole election: nominations, voting on phones, the count and the results. Free for up to 50 voters.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>COLection: election software for clubs, societies and colleges</title>
+  <meta name="description" content="Run your club's election from one laptop: nominations, voting on phones, the count and the results. Free for up to 50 voters.">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1a2e" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
   <script>document.documentElement.classList.add("js");</script>
 </head>
-<body class="home">
+<body>
   <a class="skip" href="#main">Skip to the content</a>
-
-  <header class="top" id="top-bar">
-    <a class="brand" href="index.html" aria-label="COLection, home">
-      <img src="images/colection-mark.svg" alt="" width="26" height="26">
-      <span>COLection</span>
-    </a>
-    <nav aria-label="Main">
-      <a href="how-it-works.html">How it works</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="help.html">Help</a>
-      <a class="pill" href="index.html#download">Download</a>
-    </nav>
+  <header class="top" id="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="pricing.html">Pricing</a>
+        <a href="help.html" class="hide-xs">Help</a>
+        <a href="contact.html" class="hide-sm">Contact</a>
+        <a class="btn" href="download.html">Download</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
 
-    <!-- The first screen says what this is: a program, shown running. -->
-    <section class="hero2" aria-label="COLection">
-      <div class="wrap hero2-grid">
-        <div class="hero2-copy">
-          <h1>Election software for clubs, colleges and&nbsp;societies.</h1>
-          <p class="lead">COLection is a program for your computer that runs the whole election &mdash; nominations, voting on phones, the count and the results.</p>
-          <p class="actions">
-            <a class="btn" href="#download">Download free</a>
-            <a class="textlink alt" href="how-it-works.html">See how it works</a>
-          </p>
-          <p class="fine">For Windows 10 and 11 &middot; Free for up to 50 voters &middot; No account needed</p>
-        </div>
-        <figure class="hero2-shot">
-          <div class="win">
-            <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-            <img src="images/app-count.png" width="1280" height="800" alt="The COLection program on the results step: six positions counted, with the winner of each listed." fetchpriority="high">
-          </div>
-          <figcaption>COLection, a moment after counting a committee election.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- The whole job, in three plain columns: the three rings on the logo. -->
-    <section class="rings3" aria-labelledby="rings-title">
+    <section class="hero">
       <div class="wrap">
-        <h2 id="rings-title">The whole election, in one program.</h2>
-        <div class="rings3-grid">
-          <article class="ring-col navy">
-            <h3>Nominations</h3>
-            <p>Publish a form and candidates put themselves forward. You accept each one with a click, and the ballot builds itself.</p>
-          </article>
-          <article class="ring-col green">
-            <h3>Voting</h3>
-            <p>Voters rank the names on their own phone &mdash; in the room or from home. Nothing to install, and it works even without wifi.</p>
-          </article>
-          <article class="ring-col amber">
-            <h3>Counting</h3>
-            <p>One click, counted &mdash; preferential votes, whole committees, ties. You get the winners on screen and a report you can print and sign.</p>
-          </article>
+        <div class="hero-copy">
+          <h1>Run your club's election from one laptop.</h1>
+          <div class="hero-sub">
+            <p class="lead">Nominations, voting on phones, the count and the results. COLection does all of it, for clubs, societies and colleges.</p>
+            <div>
+              <div class="actions">
+                <a class="btn big" href="download.html"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>Download free</a>
+                <a class="link" href="pricing.html">See pricing</a>
+              </div>
+              <p class="fine">For Windows 10 and 11. Free for up to 50 voters.</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <!-- The voter's side: one picture, a few plain sentences. -->
-    <section class="night-out" aria-labelledby="night-title">
-      <div class="wrap night-grid">
-        <figure class="night-phone">
-          <img src="images/app-phone.png" width="340" height="800" alt="A ballot on a phone, with three names ranked in order.">
-          <figcaption>The ballot, on a voter's own phone.</figcaption>
+        <figure class="devices" data-devices aria-label="COLection running an election: the voting desk on a laptop, and a voter's phone">
+          <div class="laptop">
+            <div class="screen">
+              <video data-auto muted playsinline loop preload="metadata" poster="images/desk-poster.webp" width="1600" height="1000" aria-hidden="true">
+                <source src="videos/desk-live.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="base"></div>
+          </div>
+          <div class="phone">
+            <video data-auto muted playsinline loop preload="metadata" poster="images/phone-poster.webp" width="360" height="680" aria-hidden="true">
+              <source src="videos/phone-ballot.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption class="sr">The voting desk counting votes as they come in, and a voter ranking three candidates on their phone.</figcaption>
         </figure>
-        <div class="night-copy">
-          <h2 id="night-title">Election night, without the pile of paper.</h2>
-          <p>One laptop in the room runs the show. Voters scan a code and vote on their phones, or at a laptop set up as a booth.</p>
-          <ul class="plainlist">
-            <li>Someone can't make it? Send them a personal link to vote from home.</li>
-            <li>Ballots carry no names and no times, so every vote is secret.</li>
-            <li>If a computer dies mid-election, no vote is lost.</li>
-          </ul>
+      </div>
+    </section>
+
+    <section class="section" id="steps" aria-labelledby="steps-title">
+      <div class="wrap">
+        <div class="head">
+          <h2 id="steps-title">Six steps, start to finish.</h2>
+        </div>
+        <ol class="steps" data-steps>
+          <li><span class="mark">1</span><h3>Rules</h3><p>Positions, seats and how each is counted. Or use a template.</p></li>
+          <li><span class="mark">2</span><h3>People</h3><p>Candidates nominate with a form. Load your voter list.</p></li>
+          <li><span class="mark">3</span><h3>Voting</h3><p>On phones, at booths, on paper or from home.</p></li>
+          <li><span class="mark">4</span><h3>Check</h3><p>Problems are caught before you count.</p></li>
+          <li><span class="mark">5</span><h3>Count</h3><p>One click. Winners and every round.</p></li>
+          <li><span class="mark">6</span><h3>Export</h3><p>A signed report and a results page to share.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-label="What it does">
+      <div class="wrap">
+        <div class="feature">
+          <div class="feature-copy">
+            <h2>Your rules, not ours.</h2>
+            <p class="lead">One president or a whole committee. Set it up once and save it for next year.</p>
+            <ul class="ticks">
+              <li>Preferential, first past the post, approval or Borda</li>
+              <li>Quotas, like at least two women on the committee</li>
+              <li>Checked as you type, so the rules can't contradict each other</li>
+            </ul>
+          </div>
+          <div class="shot">
+            <img class="light-only" src="images/rules-light.webp" width="1600" height="1000" loading="lazy" alt="The Rules step: six positions, each with its seats, counting method and who can stand.">
+            <img class="dark-only" src="images/rules-dark.webp" width="1600" height="1000" loading="lazy" alt="">
+          </div>
+        </div>
+
+        <div class="feature flip">
+          <div class="feature-copy">
+            <h2>Election night, sorted.</h2>
+            <p class="lead">The voting desk shows who has voted, who is voting and which booth is free.</p>
+            <ul class="ticks">
+              <li>Voters scan a QR code and vote on their own phone</li>
+              <li>Can't make it? Send a personal link to vote from home</li>
+              <li>Runs on your local Wi-Fi. No internet needed in the room</li>
+            </ul>
+          </div>
+          <div class="shot">
+            <img src="images/desk-light.webp" width="1600" height="1000" loading="lazy" alt="The voting desk while voting is open: 29 of 48 have voted, with the list of voters still to vote and three booths.">
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Trust, and the price, side by side. Short. -->
-    <section class="twin" aria-label="Checking results, and pricing">
-      <div class="wrap twin-grid">
-        <div class="twin-cell">
-          <h2>Results no one can argue with.</h2>
-          <p>COLection shows how every vote moved, round by round, so a close result is never a fight.</p>
-          <p class="actions"><a class="textlink alt" href="counting.html">Watch a count happen</a></p>
-        </div>
-        <div class="twin-cell">
-          <h2>Free to start.</h2>
-          <p>Everything included for up to 50 voters, for as long as you like. Bigger elections from A$90 a year.</p>
-          <p class="actions"><a class="textlink alt" href="pricing.html">See pricing</a></p>
+    <section class="count" id="count" aria-labelledby="count-title" data-count>
+      <div class="count-track">
+        <div class="count-stage">
+          <div class="wrap count-grid">
+            <div class="count-copy">
+              <h2 id="count-title">See how it was won.</h2>
+              <p class="lead" style="margin-top:16px">Preferential counts, round by round. Even when the leader doesn't win.</p>
+              <p class="round-no" data-round-no>Round 1</p>
+              <p class="round-say" data-round-say aria-live="polite">200 ballots. 101 votes needed to win.</p>
+              <div class="count-nav">
+                <button type="button" data-prev aria-label="Previous round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+                <button type="button" data-next aria-label="Next round"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+                <span class="dots" data-dots aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="board" aria-label="Votes for each candidate in this round">
+              <div class="board-head"><span><strong>President</strong>, 5 candidates</span><span data-still>200 votes still in the count</span></div>
+              <ol class="rows" data-rows></ol>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="download" id="download" data-theme="dark" aria-labelledby="download-title">
-      <div class="wrap download-simple">
-        <h2 id="download-title">Put your next election in it.</h2>
-        <p class="sub">Version 0.2.3 for Windows 10 and 11. Free for up to 50 voters.</p>
-        <p class="actions">
-          <!-- Download links point at the GitHub release v0.2.3. For a new version, upload to a new release (tag v0.2.3 and so on) and change the version in these links. -->
-          <a class="btn light" href="https://github.com/angusdillon1/COLection/releases/download/v0.2.3/COLection-Setup-0.2.3.exe">Download the installer</a>
-        </p>
-        <p class="fine">Windows may warn you the first time, because the program is new. Choose <strong>More info</strong>, then <strong>Run anyway</strong>. <a href="help.html#install">Installation help</a> &middot; <a href="https://github.com/angusdillon1/COLection/releases/download/v0.2.3/COLection-0.2.3.zip">Download as a zip instead</a></p>
-        <p class="fine">Running something unusual? <a href="#" id="custom-link">Tell us what you need</a> and we'll tell you what's possible.</p>
+    <section class="section" aria-labelledby="trust-title" style="padding-top:var(--s9)">
+      <div class="wrap">
+        <div class="head"><h2 id="trust-title">Built to be trusted.</h2></div>
+        <div class="promises">
+          <div class="promise">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="18" width="22" height="15" rx="3"/><path d="M14 18v-4a6 6 0 0 1 12 0v4"/></svg>
+            <h3>Secret</h3>
+            <p>Ballots carry no names and no times. Not even the organiser can see who voted for whom.</p>
+          </div>
+          <div class="promise">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 5l12 5v9c0 8-5.5 13-12 16-6.5-3-12-8-12-16v-9z"/><path d="M14.5 20l4 4 7-8"/></svg>
+            <h3>Safe</h3>
+            <p>If a laptop dies mid-vote, another one takes over from the backup. No vote is lost.</p>
+          </div>
+          <div class="promise">
+            <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5h13l7 7v23H11z"/><path d="M24 5v7h7"/><path d="M16 23l3 3 6-7"/></svg>
+            <h3>Checkable</h3>
+            <p>Every round is on screen, and the signed report carries a results code anyone can check.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="team-title">
+      <div class="wrap team">
+        <div>
+          <h2 id="team-title">Run it as a team.</h2>
+          <p class="lead" style="margin-top:16px">Share an election with your committee. Everyone's changes reach everyone within seconds, and you choose who can edit, run voting, or just look.</p>
+          <p class="fine" style="margin-top:16px">Sharing uses a COLection Online account.</p>
+        </div>
+        <ul class="people" aria-label="An example election shared with four people">
+          <li><span class="face" style="background:#14305c" aria-hidden="true">SL</span><span><span class="name">Sam Lee</span><br><span class="doing">Everything, including deleting it</span></span><span class="role owner">Owner</span></li>
+          <li><span class="face" style="background:#1f9d55" aria-hidden="true">AK</span><span><span class="name">Ana Kovac</span><br><span class="doing">Sets up, counts and invites people</span></span><span class="role">Co-organiser</span></li>
+          <li><span class="face" style="background:#b7791f" aria-hidden="true">RD</span><span><span class="name">Rex Dunn</span><br><span class="doing">Runs the voting desk on the day</span></span><span class="role">Runner</span></li>
+          <li><span class="face" style="background:#6b5ca5" aria-hidden="true">MP</span><span><span class="name">Mo Park</span><br><span class="doing">Sees everything, changes nothing</span></span><span class="role">Viewer</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="price-title">
+      <div class="wrap price-strip">
+        <div>
+          <h2 id="price-title">Free up to 50 voters.</h2>
+          <p class="lead" style="margin-top:16px">Bigger elections pay once, by size. No subscription, and nothing is locked when it ends.</p>
+        </div>
+        <div class="quick" data-quick>
+          <label for="quick-voters">How many voters?</label>
+          <input type="range" id="quick-voters" min="0" max="10" value="3" aria-describedby="quick-what">
+          <div class="ends" aria-hidden="true"><span>50</span><span>5,000</span></div>
+          <output for="quick-voters" data-quick-price>A$100</output>
+          <p class="what" id="quick-what" data-quick-what>Up to 250 voters, one election (30 days), everything included.</p>
+          <div class="actions"><a class="btn quiet" href="pricing.html" data-quick-link>See every option</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="go-title">
+      <div class="wrap">
+        <img class="mark-big" src="images/colection-mark-light.svg" alt="" width="72" height="72">
+        <h2 id="go-title">Put your next election in it.</h2>
+        <p>Free for up to 50 voters. Windows 10 and 11.</p>
+        <div class="actions">
+          <a class="btn big" href="download.html"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>Download free</a>
+          <a class="btn big quiet" href="contact.html">Talk to us</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="foot" data-theme="dark">
-    <div class="wrap foot-row">
-      <a class="brand" href="index.html" aria-label="COLection, home">
-        <img src="images/colection-mark.svg" alt="" width="24" height="24">
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
         <span>COLection</span>
       </a>
-      <nav class="foot-nav" aria-label="Footer">
-        <a href="how-it-works.html">How it works</a>
-        <a href="counting.html">How counting works</a>
+      <nav aria-label="Footer">
+        <a href="download.html">Download</a>
+        <a href="pricing.html">Pricing</a>
         <a href="help.html">Help</a>
         <a href="changelog.html">What's new</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
         <a href="terms.html">Terms</a>
       </nav>
-      <p>Election software for any group. Version 0.2.3.</p>
+      <p class="fine">&copy; 2026 COLection. Election software for clubs, societies and colleges. Made in Victoria, Australia.</p>
     </div>
   </footer>
   <script src="js/site-config.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/count.js"></script>
   <script src="js/site.js"></script>
-  <script>(function(){var c=window.COL_SITE||{},a=document.getElementById("custom-link");if(a)a.href="mailto:"+(c.CONTACT_EMAIL||"")+"?subject="+encodeURIComponent("COLection: something specific");})();</script>
 </body>
 </html>

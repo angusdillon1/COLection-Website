@@ -2,42 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Terms - COLection</title>
-  <meta name="description" content="The terms for buying and using a COLection licence.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Terms | COLection</title>
+  <meta name="description" content="The terms for buying a COLection licence.">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f7f4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1a2e" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="fonts/schibsted-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
   <script>document.documentElement.classList.add("js");</script>
 </head>
-<body class="inner">
+<body>
   <a class="skip" href="#main">Skip to the content</a>
-
-  <header class="top" id="top-bar">
-    <a class="brand" href="index.html" aria-label="COLection, home">
-      <img src="images/colection-mark.svg" alt="" width="26" height="26">
-      <span>COLection</span>
-    </a>
-    <nav aria-label="Main">
-      <a href="how-it-works.html">How it works</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="help.html">Help</a>
-      <a class="pill" href="index.html#download">Download</a>
-    </nav>
+  <header class="top" id="top">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
+        <span>COLection</span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="pricing.html">Pricing</a>
+        <a href="help.html" class="hide-xs">Help</a>
+        <a href="contact.html" class="hide-sm">Contact</a>
+        <a class="btn" href="download.html">Download</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
-    <section class="page-hero" aria-labelledby="page-title">
-      <div class="wrap">
-        <h1 id="page-title">Terms.</h1>
-        <p class="sub">In plain words, so you know what you are agreeing to.</p>
-      </div>
-    </section>
-    <section class="legal" aria-label="Terms">
-      <div class="wrap narrow">
+    <section class="page-head"><div class="wrap narrow"><h1>Terms.</h1><p class="lead">In plain words, so you know what you're agreeing to.</p></div></section>
+    <section class="section" style="padding-top:0" aria-label="Terms"><div class="wrap narrow prose">
         <h2>What you are buying</h2>
         <p>A licence to use COLection for your organisation, for the number of voters and the period you chose. It removes the free version's limits (50 voters in an election) and the "made with the free version" line on reports and printouts. A licence has a start date (usually the day you buy it) and an end date, and both are shown in the program.</p>
         <h2>Who we are</h2>
@@ -57,25 +52,24 @@
         <h2>Open-source software</h2>
         <p>COLection includes open-source components under their own licences (Help &gt; Open-source licences in the program). Those licences are not changed by these terms.</p>
         <p class="fine">Last updated October 2026.</p>
-      </div>
-    </section>
+      </div></section>
   </main>
 
-  <footer class="foot" data-theme="dark">
-    <div class="wrap foot-row">
-      <a class="brand" href="index.html" aria-label="COLection, home">
-        <img src="images/colection-mark.svg" alt="" width="24" height="24">
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="index.html" aria-label="COLection home">
+        <picture><source srcset="images/colection-mark-light.svg" media="(prefers-color-scheme: dark)"><img src="images/colection-mark.svg" alt="" width="30" height="30"></picture>
         <span>COLection</span>
       </a>
-      <nav class="foot-nav" aria-label="Footer">
-        <a href="how-it-works.html">How it works</a>
-        <a href="counting.html">How counting works</a>
+      <nav aria-label="Footer">
+        <a href="download.html">Download</a>
+        <a href="pricing.html">Pricing</a>
         <a href="help.html">Help</a>
         <a href="changelog.html">What's new</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
         <a href="terms.html">Terms</a>
       </nav>
-      <p>Election software for any group. Version 0.2.3.</p>
+      <p class="fine">&copy; 2026 COLection. Election software for clubs, societies and colleges. Made in Victoria, Australia.</p>
     </div>
   </footer>
   <script src="js/site-config.js"></script>

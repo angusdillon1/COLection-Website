@@ -1,181 +1,120 @@
-/* The site's scroll moments. Every effect here is progress-driven: a section's position sets a few CSS variables or classes.
-   Each one only runs if its section is on the page, so this one file serves every page.
-   Nothing moves when the visitor has "reduce motion" on, and the pinned sections become plain ones on a small screen (the CSS does that). */
+/* Small things every page shares: the header's line once you scroll, the recordings on the home page (they play only while on
+   screen, and not at all for people who ask for less motion), the line through the four steps, the quick price, the download
+   links and the contact address (both from js/site-config.js). */
 (function () {
   "use strict";
-  var root = document.documentElement;
-  var still = window.matchMedia("(prefers-reduced-motion: reduce)");
-  var small = window.matchMedia("(max-width: 900px)");
-  var vh = window.innerHeight;
+  var cfg = window.COL_SITE || {};
+  var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return [].slice.call((root || document).querySelectorAll(sel)); };
+  function clamp(x) { return Math.max(0, Math.min(1, x)); }
 
-  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-  function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
-  function mix(a, b, t) { return a + (b - a) * t; }
-  function hex(c) { c = c.trim(); return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]; }
-  function blend(a, b, t) { var x = hex(a), y = hex(b); return "rgb(" + x.map(function (v, i) { return Math.round(mix(v, y[i], t)); }).join(",") + ")"; }
-  function $(id) { return document.getElementById(id); }
-  function motion() { return !still.matches; }
-  function pinned() { return motion() && !small.matches; }
-  function progress(track) {                       /* how far through a tall "track" section the visitor has scrolled, 0 to 1 */
-    var r = track.getBoundingClientRect();
-    return clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
-  }
-  function paper() { return getComputedStyle(root).getPropertyValue("--paper") || "#fbfbfd"; }
+  /* the header gets a line under it once the page has moved */
+  var top = document.getElementById("top");
+  function onScroll() { if (top) top.classList.toggle("scrolled", window.scrollY > 8); }
 
-  /* ---------- things that rise in ---------- */
-  var reveals = [].slice.call(document.querySelectorAll(".reveal"));
-  if ("IntersectionObserver" in window && motion()) {
+  /* the recordings: the laptop and the phone start together (they are the same length) and pause when off screen */
+  var videos = $$("video[data-auto]");
+  if (videos.length && !still && "IntersectionObserver" in window) {
+    var showing = false;
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -12% 0px", threshold: .08 });
-    reveals.forEach(function (el, i) { el.style.setProperty("--d", ((i % 4) * 0.08) + "s"); io.observe(el); });
-  } else {
-    reveals.forEach(function (el) { el.classList.add("in"); });
+      var any = entries.some(function (e) { return e.isIntersecting; });
+      if (any && !showing) {
+        showing = true;
+        videos.forEach(function (v) { try { v.currentTime = 0; } catch (e) { /* not loaded yet */ } var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+      } else if (!any && showing) {
+        showing = false;
+        videos.forEach(function (v) { v.pause(); });
+      }
+    }, { threshold: 0.25 });
+    io.observe(videos[0].closest("figure") || videos[0]);
   }
 
-  /* ---------- the words that light up ---------- */
-  var words = $("words"), wordEls = [];
-  if (words && motion()) {
-    words.setAttribute("aria-label", words.textContent);
-    words.innerHTML = words.textContent.split(/\s+/).map(function (w) { return '<span class="w" aria-hidden="true">' + w + "</span>"; }).join(" ");
-    wordEls = [].slice.call(words.querySelectorAll(".w"));
-  }
-  function lightWords() {
-    if (!wordEls.length) return;
-    var r = words.getBoundingClientRect();
-    var t = clamp((vh * .82 - r.top) / (r.height + vh * .34), 0, 1);
-    var n = Math.round(t * wordEls.length);
-    wordEls.forEach(function (el, i) { el.classList.toggle("lit", i < n); });
+  /* the four steps: the line between the numbers fills as you scroll past them */
+  var steps = $("[data-steps]");
+  var marks = steps ? $$("li", steps) : [];
+  function fillSteps() {
+    if (!steps) return;
+    var r = steps.getBoundingClientRect(), vh = window.innerHeight;
+    var p = still ? 1 : clamp((vh * 0.75 - r.top) / (r.height * 0.6 + vh * 0.25));
+    steps.style.setProperty("--fill", p.toFixed(3));
+    marks.forEach(function (li, i) { li.classList.toggle("on", p >= i / Math.max(1, marks.length - 1) - 0.02); });
   }
 
-  /* ---------- the hero: scroll through the rings ---------- */
-  var track = document.querySelector(".hero-track"), stage = $("hero-stage"), copy = $("hero-copy");
-  var rings = $("rings"), allRings = $("ring-all"), line = $("hero-line"), ringA = $("ring-a"), ringB = $("ring-b"), ringC = $("ring-c"), dot = $("ring-dot");
-  var heroP = 0, idle = 0, lastT = 0, mx = 0, my = 0, sx = 0, sy = 0;
-  if (rings) {
-    window.addEventListener("pointermove", function (e) {
-      mx = (e.clientX / window.innerWidth - .5) * 2; my = (e.clientY / window.innerHeight - .5) * 2;
-    }, { passive: true });
-  }
-  function hero() {
-    if (!rings) return;
-    if (!pinned()) { allRings.removeAttribute("transform"); rings.style.removeProperty("--ro"); rings.style.transform = ""; return; }
-    var p = heroP;
-    var q = ease(clamp((p - .12) / .88, 0, 1));
-    var scale = 1 + Math.pow(q, 2.4) * 44;
-    allRings.setAttribute("transform", "translate(50 50) scale(" + scale.toFixed(3) + ") translate(-50 -50)");
-    rings.style.setProperty("--ro", (1 - clamp((p - .8) / .2, 0, 1)).toFixed(3));
-    sx += (mx - sx) * .06; sy += (my - sy) * .06;                          /* the rings lean a little towards the mouse */
-    var lean = 1 - clamp(p * 4, 0, 1);
-    rings.style.transform = "translate3d(" + (sx * 14 * lean).toFixed(1) + "px," + (sy * 8 * lean).toFixed(1) + "px,0)";
-    var spin = idle * 6;
-    ringA.setAttribute("transform", "rotate(" + (spin * .5 + p * 150) + " 50 50)");
-    ringB.setAttribute("transform", "rotate(" + (-spin * .9 - p * 260) + " 50 50)");
-    ringC.setAttribute("transform", "rotate(" + (spin * 1.4 + p * 420) + " 50 50)");
-    dot.setAttribute("r", (4.5 + 0.5 * Math.sin(idle * 1.6)).toFixed(2));
-    var lp = clamp((p - .14) / .1, 0, 1) * (1 - clamp((p - .42) / .12, 0, 1));
-    line.style.opacity = lp.toFixed(3);
-    line.style.transform = "translate3d(0," + ((1 - lp) * 30 + (p > .3 ? -(p - .3) * 120 : 0)) + "px,0)";
-    copy.style.opacity = String(clamp(1 - p * 5, 0, 1));
-    copy.style.transform = "translate3d(0," + (-p * 160) + "px,0) scale(" + (1 - p * .08) + ")";
-    copy.style.pointerEvents = p > .12 ? "none" : "";
-    stage.style.setProperty("--stage-bg", blend("#0b1424", paper(), clamp((p - .62) / .3, 0, 1)));
-    stage.style.setProperty("--cue", String(clamp(1 - p * 8, 0, 1)));
+  /* the laptop's screen tips up to face you as you scroll down to it */
+  var devices = $("[data-devices]"), screen = devices ? $(".screen", devices) : null;
+  function tilt() {
+    if (!screen || still) return;
+    var r = devices.getBoundingClientRect(), vh = window.innerHeight;
+    var p = clamp((vh * 0.85 - r.top) / (vh * 0.6));
+    screen.style.setProperty("--tilt", (14 * (1 - p)).toFixed(2));
   }
 
-  /* ---------- the five steps ---------- */
-  var stepsTrack = $("steps"), stepItems = [].slice.call(document.querySelectorAll("#step-list li")), frames = [].slice.call(document.querySelectorAll("#step-shots .frame"));
-  var stepNow = -1;
-  function steps() {
-    if (!stepsTrack || !pinned()) return;
-    var i = clamp(Math.floor(progress(stepsTrack) * stepItems.length * .999), 0, stepItems.length - 1);
-    if (i === stepNow) return;
-    stepNow = i;
-    stepItems.forEach(function (el, k) { el.classList.toggle("on", k === i); });
-    frames.forEach(function (el, k) { el.classList.toggle("on", k === i); el.classList.toggle("past", k < i); });
-  }
-
-  /* ---------- the report grows ---------- */
-  var grow = $("grow"), growWin = grow && grow.querySelector(".win");
-  function growReport() {
-    if (!growWin) return;
-    if (!pinned()) { growWin.style.removeProperty("--gs"); growWin.style.removeProperty("--gr"); return; }
-    var r = grow.getBoundingClientRect();
-    var t = ease(clamp((vh * .95 - r.top) / (vh * .75), 0, 1));
-    growWin.style.setProperty("--gs", mix(.64, 1, t).toFixed(4));
-    growWin.style.setProperty("--gr", mix(46, 22, t).toFixed(1) + "px");
-  }
-
-  /* ---------- a little drift on the voting screenshots ---------- */
-  var drifters = [].slice.call(document.querySelectorAll(".parallax"));
-  function drift() {
-    drifters.forEach(function (el) {
-      if (!pinned()) { el.style.removeProperty("--py"); return; }
-      var r = el.parentNode.getBoundingClientRect();
-      var t = clamp((vh - r.top) / (vh + r.height), 0, 1) - .5;
-      el.style.setProperty("--py", (t * parseFloat(el.getAttribute("data-speed") || "0") * 3).toFixed(1) + "px");
+  /* sliders show how far along they are (WebKit has no "filled" part of its own) */
+  function paintRanges() {
+    $$('input[type="range"]').forEach(function (s) {
+      var min = Number(s.min) || 0, max = Number(s.max) || 100, v = Number(s.value);
+      s.style.setProperty("--pct", (max > min ? (v - min) / (max - min) * 100 : 0) + "%");
     });
   }
+  document.addEventListener("input", function () { requestAnimationFrame(paintRanges); });
 
-  /* ---------- the top bar: reading progress, and light text over dark chapters ---------- */
-  var bar = $("top-bar"), darks = [].slice.call(document.querySelectorAll("[data-theme='dark']"));
-  function topBar() {
-    var y = 26, dark = false;
-    darks.forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.top <= y && r.bottom >= y) dark = true;
-    });
-    if (pinned() && track && heroP > .62) {                                  /* the hero's stage turns to the page colour at the end of its scroll */
-      var r = track.getBoundingClientRect();
-      if (r.top <= y && r.bottom >= y) dark = false;
+  /* the quick price on the home page: a 30-day pass with everything, for the size on the slider */
+  var quick = $("[data-quick]");
+  if (quick && window.ColPricing) {
+    var P = window.ColPricing, SIZES = [50, 100, 150, 250, 350, 500, 750, 1000, 1500, 2500, 5000];
+    var slider = $("input", quick), out = $("[data-quick-price]", quick), what = $("[data-quick-what]", quick), link = $("[data-quick-link]", quick);
+    slider.max = SIZES.length - 1;
+    var showQuick = function () {
+      var n = SIZES[Number(slider.value)];
+      if (n <= P.CONFIG.free_voters) {
+        out.textContent = "Free";
+        what.textContent = "Up to " + n + " voters, every feature, no time limit.";
+        link.href = "download.html";
+        link.textContent = "Download it";
+      } else {
+        out.textContent = "A$" + P.price(n, "pass", "complete").toLocaleString("en-AU");
+        what.textContent = "Up to " + n.toLocaleString("en-AU") + " voters, one election (30 days), everything included.";
+        link.href = "pricing.html?voters=" + n + "&term=pass&plan=complete";
+        link.textContent = "See every option";
+      }
+      slider.setAttribute("aria-valuetext", n <= 50 ? "Up to 50 voters, free" : "Up to " + n + " voters");
+    };
+    slider.addEventListener("input", showQuick);
+    showQuick();
+  }
+
+  /* downloads: every link is made from the version in site-config.js */
+  if (cfg.VERSION && cfg.RELEASES) {
+    var base = cfg.RELEASES.replace(/\/$/, "") + "/v" + cfg.VERSION + "/";
+    var exe = document.getElementById("dl-installer"), zip = document.getElementById("dl-zip");
+    if (exe) exe.href = base + "COLection-Setup-" + cfg.VERSION + ".exe";
+    if (zip) zip.href = base + "COLection-" + cfg.VERSION + ".zip";
+    $$("[data-version]").forEach(function (el) { el.textContent = cfg.VERSION; });
+  }
+  if (cfg.REFUND_DAYS) $$("[data-refund-days]").forEach(function (el) { el.textContent = cfg.REFUND_DAYS; });
+
+  /* the contact page: the address, a copy button, and emails that start with the right subject */
+  var email = cfg.CONTACT_EMAIL || "";
+  $$("[data-email]").forEach(function (el) { if (email) el.textContent = email; });
+  $$("[data-mail]").forEach(function (a) { a.href = "mailto:" + email + "?subject=" + encodeURIComponent(a.getAttribute("data-mail")); });
+  var copyBtn = $("[data-copy-email]"), copied = $("[data-copied]");
+  if (copyBtn) copyBtn.addEventListener("click", function () {
+    function say(ok) {
+      if (copied) copied.textContent = ok ? "Copied." : "Select the address and copy it.";
+      copyBtn.textContent = ok ? "Copied" : "Copy";
+      setTimeout(function () { copyBtn.textContent = "Copy"; }, 2000);
     }
-    bar.classList.toggle("dark", dark);
-    var max = Math.max(1, document.documentElement.scrollHeight - vh);
-    bar.style.setProperty("--sp", clamp(window.scrollY / max, 0, 1).toFixed(4));
-  }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(email).then(function () { say(true); }, function () { say(false); });
+    else say(false);
+  });
 
-
-  /* ---------- the home page rings: they turn, lean towards the mouse, and drift away as you scroll ---------- */
-  var hRings = $("home-rings"), hA = $("hr-a"), hB = $("hr-b"), hC = $("hr-c"), hDot = $("hr-dot");
-  var hmx = 0, hmy = 0, hsx = 0, hsy = 0, hIdle = 0;
-  if (hRings) window.addEventListener("pointermove", function (e) {
-    hmx = (e.clientX / window.innerWidth - .5) * 2; hmy = (e.clientY / window.innerHeight - .5) * 2;
+  var ticking = false;
+  window.addEventListener("scroll", function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; onScroll(); fillSteps(); tilt(); });
   }, { passive: true });
-  function homeRings() {
-    if (!hRings || !motion()) return false;
-    var r = hRings.getBoundingClientRect();
-    if (r.bottom < -80 || r.top > vh) return false;
-    var p = clamp(window.scrollY / (vh * .8), 0, 1);
-    hsx += (hmx - hsx) * .06; hsy += (hmy - hsy) * .06;
-    hRings.style.transform = "translate3d(" + (hsx * 12).toFixed(1) + "px," + (hsy * 8 - p * 40).toFixed(1) + "px,0) scale(" + (1 + p * .25).toFixed(3) + ")";
-    hRings.style.opacity = (.95 - p * .6).toFixed(3);
-    hA.setAttribute("transform", "rotate(" + (hIdle * 3 + p * 120).toFixed(1) + " 50 50)");
-    hB.setAttribute("transform", "rotate(" + (-hIdle * 5 - p * 200).toFixed(1) + " 50 50)");
-    hC.setAttribute("transform", "rotate(" + (hIdle * 8 + p * 320).toFixed(1) + " 50 50)");
-    hDot.setAttribute("r", (4.5 + .5 * Math.sin(hIdle * 1.6)).toFixed(2));
-    return true;
-  }
-
-  /* ---------- one loop ---------- */
-  var queued = false;
-  function frame(now) {
-    queued = false;
-    vh = window.innerHeight;
-    var dt = lastT ? Math.min(.1, (now - lastT) / 1000) : 0;
-    lastT = now; idle += dt; hIdle += dt;
-    heroP = track ? progress(track) : 0;
-    var turning = homeRings();
-    hero(); lightWords(); steps(); growReport(); drift(); topBar();
-    if (turning) request();
-    if (track) {
-      var r = track.getBoundingClientRect();
-      if (r.bottom > 0 && r.top < vh && pinned()) request();               /* keep the rings turning while they are on screen */
-    }
-  }
-  function request() { if (!queued) { queued = true; requestAnimationFrame(frame); } }
-  window.addEventListener("scroll", request, { passive: true });
-  window.addEventListener("resize", request);
-  window.addEventListener("load", request);
-  if (still.addEventListener) { still.addEventListener("change", request); small.addEventListener("change", request); }
-  request();
+  window.addEventListener("resize", function () { fillSteps(); tilt(); });
+  onScroll(); fillSteps(); tilt(); paintRanges();
 })();

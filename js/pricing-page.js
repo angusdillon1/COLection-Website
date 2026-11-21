@@ -37,14 +37,14 @@
     if (n <= FREE) {
       priceEl.textContent = "Free";
       detail.textContent = "Every feature, no time limit";
-      note.textContent = "Up to " + FREE + " voters, COLection is free: no licence needed. Just download it.";
+      note.textContent = "No licence needed. Just download it.";
       buy.disabled = true; buy.textContent = "No licence needed"; buy.dataset.mode = "free";
       return;
     }
     if (n > MAX) {
       priceEl.textContent = "Ask us";
       detail.textContent = "More than " + people(MAX) + " voters";
-      note.textContent = "For a group this size we work out a price with you.";
+      note.textContent = "For a group this size, we work out a price with you.";
       buy.disabled = false; buy.textContent = "Ask for a quote"; buy.dataset.mode = "quote";
       return;
     }
@@ -56,7 +56,7 @@
     detail.textContent = P.planName(pl) + " plan, " +
       (t === "pass" ? P.CONFIG.pass.days + " days (one election)" : years + (years === 1 ? " year" : " years")) +
       ", up to " + people(size) + " voters" + (years > 1 ? " (" + money(Math.round(cost / years)) + " a year)" : "");
-    note.textContent = "One payment, no subscription: it simply ends, and the program keeps working in free mode.";
+    note.textContent = "Pay once. No subscription.";
     buy.textContent = online ? "Pay " + money(cost) + " and get my licence" : "Request an invoice for " + money(cost);
   }
 
@@ -74,14 +74,14 @@
       return;
     }
     if (buy.dataset.mode !== "buy" || P.check(n, t, pl)) return update();
-    if (!org.value.trim()) { show("Please enter the name of your organisation: it is written on the licence.", true); org.focus(); return; }
-    if (!email.checkValidity() || !email.value.trim()) { show("Please enter an email address to send the licence to.", true); email.focus(); return; }
-    if (!$("agree").checked) { show("Please tick the box to say you have read the terms.", true); $("agree").focus(); return; }
+    if (!org.value.trim()) { show("Enter your organisation's name. It goes on the licence.", true); org.focus(); return; }
+    if (!email.checkValidity() || !email.value.trim()) { show("Enter the email address for the licence.", true); email.focus(); return; }
+    if (!$("agree").checked) { show("Tick the box to say you've read the terms.", true); $("agree").focus(); return; }
     if (!online) {
       window.location.href = mailto("COLection licence: " + org.value.trim(),
         "Please send me an invoice.\n\nOrganisation: " + org.value.trim() + "\nPlan: " + P.planName(pl) + "\nVoters: up to " + P.tier(n) +
         "\nTerm: " + P.termName(t) + "\nPrice: " + money(P.price(n, t, pl)) + "\nSend the licence to: " + email.value.trim() + "\n");
-      show("Your email program should have opened with the details filled in. Send it and I'll reply with an invoice.", false);
+      show("Your email should have opened with the details filled in. Send it and we'll reply with an invoice.", false);
       return;
     }
     buy.disabled = true;
