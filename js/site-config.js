@@ -13,6 +13,6 @@ window.COL_SITE = {
   CONTACT_EMAIL: "colectionhelp@gmail.com",
   SELLER: "",
   REFUND_DAYS: 14,
-  VERSION: "0.2.3",
-  RELEASES: "https://github.com/angusdillon1/COLection/releases/download"
+  VERSION: "0.9.2",
+  RELEASES: "https://github.com/angusdillon1/COLection-Website/releases/download"
 };
